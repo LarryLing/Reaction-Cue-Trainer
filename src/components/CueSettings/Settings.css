@@ -1,0 +1,13 @@
+.Settings-Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: calc(2 * var(--verticalspacing));
+
+    padding: var(--padding);
+}
+
+.Prompt {
+    font: var(--settingstext);
+    font-size: 20px;
+}

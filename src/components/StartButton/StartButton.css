@@ -1,0 +1,27 @@
+.Start-Button {
+    font: var(--calltoaction);
+
+    border: var(--outline);
+    border-radius: var(--radius);
+    padding: var(--padding);
+
+    background-color: var(--primary);
+    color: #FFFFFF;
+
+    filter: var(--shadow);
+
+    transition: all .2s;
+    box-shadow: var(--shadow);
+}
+
+.Start-Button:hover {
+    cursor: pointer;
+    
+    transform: scale(1.015);
+    box-shadow: var(--liftedshadow);
+}
+
+.Start-Button:active {
+    transform: scale(1);
+    box-shadow: var(--shadow);
+}

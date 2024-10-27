@@ -1,0 +1,9 @@
+
+.Categories-Container {
+    display: flex;
+	flex-wrap: wrap;
+    flex-direction: row;
+    gap: calc(2 * var(--horizontalspacing));
+  
+    padding: 0px var(--padding);
+}

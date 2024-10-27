@@ -1,0 +1,31 @@
+.Text-Input-Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--verticalspacing);
+
+    color: var(--secondary);
+
+    align-items: center;
+}
+
+.Text-Input {
+    border-radius: var(--radius);
+    border-color: var(--secondary);
+
+    width: 60%;
+    padding-bottom: 100px;
+
+    font: var(--settingstext);
+
+    color: var(--secondary);
+}
+
+.Text-Input::placeholder {
+    font-style: italic;
+}
+
+.Text-Input:focus::placeholder {
+    color: transparent;
+    border-color: var(--primary)
+}

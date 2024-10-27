@@ -1,0 +1,28 @@
+.Options-Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--verticalspacing);
+
+    color: var(--secondary);
+}
+
+.Options-List {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: var(--horizontalspacing);
+}
+
+.Options-List > div {
+    border: var(--outline);
+    border-radius: var(--radius);
+    border-color: var(--primary);
+
+    cursor: pointer;
+}
+
+.Options-List > div::before {
+    content: "";
+    padding-bottom: 100%;
+    display: block;
+}

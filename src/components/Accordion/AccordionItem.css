@@ -1,0 +1,52 @@
+.Accordion-Item {
+    border: var(--outline);
+    border-radius: var(--radius);
+    border-color: var(--secondary);
+
+    box-shadow: var(--shadow);
+}
+
+.Accordion-Item-Trigger {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--secondary);
+
+    width: 100%;
+
+    cursor: pointer;
+
+    border: none;
+
+    font: var(--accordiontitle);
+    color: white;
+
+    padding: var(--padding);
+}
+
+.Chevron {
+    height: 24px;
+    width: 24px;
+    fill: none;
+    stroke: white;
+
+    transform: rotate(0deg);
+
+    transition: all 0.3s;
+}
+
+.Chevron.Rotate {
+    transform: rotate(180deg);
+}
+
+.Accordion-Item-Content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.Accordion-Item-Content.Open {
+    max-height: 500px;
+}

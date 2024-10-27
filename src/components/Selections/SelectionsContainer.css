@@ -1,0 +1,49 @@
+.Selections-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    gap: calc(var(--verticalspacing) * 2);
+}
+
+.Selections-Content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    row-gap: var(--horizontalspacing);
+    column-gap: var(--verticalspacing);
+
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+
+    font: var(--settingstext);
+    
+    width: 100%;
+}   
+
+.Parent-List, .Child-List {
+    padding-left: 20px;
+}
+
+.Parent-List > li {
+    font-size: 20px;
+    font-weight: bold;
+    list-style-type: disc;
+}
+
+.Child-List > li {
+    font-size: 16px;
+    font-weight: 400;
+    list-style-type: circle;
+}
+
+ul {
+    margin: 0;
+}
+
+li {
+    text-align: left;
+}

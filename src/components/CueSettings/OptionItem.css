@@ -1,0 +1,21 @@
+.Option-Item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    transform: scale(1);
+
+    box-shadow: var(--shadow);
+}
+
+.Option-Item:hover {
+    cursor: pointer;
+
+    transform: scale(1.015);
+    box-shadow: var(--liftedshadow);
+}
+
+.Option-Item:active {
+    transform: scale(1);
+    box-shadow: var(--shadow);
+}

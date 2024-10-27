@@ -1,38 +1,104 @@
+:root {
+	--primary: #253745;
+	--secondary: #62788a;
+
+	--horizontalspacing: 8px;
+	--verticalspacing: 8px;
+
+	--padding: 16px;
+
+	--outlinewidth: 4px;
+	--outline: var(--outlinewidth) solid var(--primary);
+	--outlinespacing: 16px;
+
+	--accordionoutline: 3px solid var(--secondary);
+
+	--radius: 8px;
+	
+	--ff: 'Raleway';
+	--font-fallback: BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+						'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+						sans-serif;
+
+	--headertitle: bold 36px var(--ff), var(--font-fallback);
+	--calltoaction: bold 28px var(--ff), var(--font-fallback);
+	--sectiontitle: bold 24px var(--ff), var(--font-fallback);
+	--accordiontitle: bold 20px var(--ff), var(--font-fallback);
+	--settingstext: regular 20px var(--ff), var(--font-fallback);
+
+	--shadow: 0px 4px 8px 1px rgba(0,0,0,0.31);
+	--liftedshadow: 0px 6px 8px 1px rgba(0,0,0,0.31);
+}
+
 .App {
-  text-align: center;
+	font-family: var(--ff), var(--font-fallback);
+	text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Website-Header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: var(--horizontalspacing); 
+
+	color: var(--primary);
+
+	padding: var(--padding);
+
+	font: var(--headertitle);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Outline {
+	border: var(--outline);
+	border-radius: var(--radius);
+	padding: var(--padding);
+
+	box-shadow: var(--shadow);
+	
+	background-color: white;
+	color: var(--primary);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Title-With-SVG {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--horizontalspacing); 
+
+	font: var(--sectiontitle);
 }
 
-.App-link {
-  color: #61dafb;
+.Two-Column-Container {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+
+	gap: var(--outlinespacing);
+
+	width: 65%;
+	margin: auto;
+
+	padding-bottom: var(--padding);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media only screen and (max-width: 800px) {
+	.Two-Column-Container {
+		width: 80%;
+		flex-direction: column;
+	}
+}
+
+.Column {
+  	display: flex;
+  	flex-direction: column;
+  	gap: var(--outlinespacing);
+}
+
+.Category-Accordion-Container {
+  	flex: 3;
+}
+
+.Selections-Timings-Start-Container {
+  	flex: 1;
 }
