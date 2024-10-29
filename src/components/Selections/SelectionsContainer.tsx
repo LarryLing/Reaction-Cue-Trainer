@@ -1,4 +1,3 @@
-import React from 'react'
 import './SelectionsContainer.css'
 import { ListIcon } from '../Icons/Icons';
 

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export function getSecondsFromHHMMSS(value : string) {
     const [ str1, str2, str3 ] = value.split(":");
 

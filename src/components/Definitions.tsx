@@ -1,7 +1,6 @@
-import React, { ReactElement }  from 'react'
+import { ReactElement }  from 'react'
 import { Circle, Ellipse, Heart, Hexagon, Octagon, Pentagon, Rectangle, Square, Star } from './Icons/Shapes';
 import OptionsContainer from './CueSettings/OptionsContainer';
-import UpdateSelectionsContainer from './CueSettings/UpdateSelectionsContainer';
 import TextInputContainer from './CueSettings/TextInputContainer';
 
 export type AccordionContent = {

@@ -1,4 +1,3 @@
-import React from 'react'
 import './UpdateSelectionsContainer.css'
 
 export default function UpdateSelectionsContainer() {

@@ -1,4 +1,3 @@
-import React from 'react'
 import './CategoriesContainer.css'
 import Category from './Category'
 import { EyeIcon, SpeakerIcon } from '../Icons/Icons'

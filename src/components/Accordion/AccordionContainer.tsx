@@ -1,4 +1,3 @@
-import React, { ReactElement } from 'react'
 import AccordionItem from './AccordionItem';
 import './AccordionContainer.css';
 import '../CueSettings/Settings.css';

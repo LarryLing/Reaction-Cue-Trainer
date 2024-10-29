@@ -1,4 +1,3 @@
-import React from 'react'
 import './Settings.css'
 import OptionItem from './OptionItem';
 import { Option } from '../Definitions';

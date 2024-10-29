@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import './Settings.css'
 import './TextInputContainer.css'
 import { SelectedCuesContext } from '../../App';

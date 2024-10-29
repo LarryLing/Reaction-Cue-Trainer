@@ -1,4 +1,3 @@
-import React from "react";
 import "./StartButton.css";
 import { WhistleIcon } from "../Icons/Icons";
 

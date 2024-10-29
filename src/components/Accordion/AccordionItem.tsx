@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactElement } from 'react'
+import { useState, ReactElement } from 'react'
 import { ChevronIcon } from '../Icons/Icons';
 import "./AccordionItem.css"
 

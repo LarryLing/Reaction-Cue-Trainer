@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { StopwatchIcon } from '../Icons/Icons'
 import './TimingsContainer.css'
 import { getSecondsFromHHMMSS, toHHMMSS } from '../HelperFunctions';

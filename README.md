@@ -24,7 +24,7 @@
 
 ## Description
 <a href="https://github.com/LarryLing/Reaction-Cue-Trainer">
-    <img src="images/demo.png" alt="Demo">
+    <img src="/public/demo.png" alt="Demo">
 </a>
 
 ### Built With

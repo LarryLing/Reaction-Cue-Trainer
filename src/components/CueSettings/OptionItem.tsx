@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext, useState } from 'react'
+import { ReactElement, useContext, useState } from 'react'
 import './OptionItem.css'
 import { SelectedCuesContext } from '../../App';
 
