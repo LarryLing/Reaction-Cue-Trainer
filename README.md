@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+<a id="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Reaction Cue Trainer
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
+<details>
+    <summary>Table of Contents</summary>
+    <ol>
+        <li>
+            <a href="#description">Description</a>
+            <ul>
+                <li><a href="#built-with">Built With</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#usage">Usage</a>
+        </li>
+        <li><a href="#contributing">Contributing</a></li>
+        <li><a href="#license">License</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#acknowledgments">Acknowledgments</a></li>
+    </ol>
+</details>
 
-In the project directory, you can run:
+## Description
+<a href="https://github.com/LarryLing/Reaction-Cue-Trainer">
+    <img src="images/demo.png" alt="Demo">
+</a>
 
-### `npm start`
+### Built With
+* [![Typescript][Typescript]][Typescript-url]
+* [![React][React.js]][React-url]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Usage
 
-### `npm test`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Future Developments
+- Implement user text input for visual cues
+- Implement "training" screen for when user clicks "Start"
+- Implement audio cues
 
-### `npm run build`
+## Contributing
+Since this personal project marks the beginning of my journey in web development, all feedback or open source developments are welcome!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you have a suggestion that would make this web app better, feel free to fork the repo and create a pull request. You can also open an issue with the tag "suggestion". Don't forget to give the project a star! Thank you!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Fork the Project
+2. Create your Suggestion Branch (`git checkout -b suggestions/SuggestedFeature`)
+3. Commit your Changes (`git commit -m 'Add some SuggestedFeature'`)
+4. Push to the Branch (`git push origin suggestions/SuggestedFeature`)
+5. Open a Pull Request
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### `npm run eject`
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contact
+Larry Ling - [@LinkedIn](https://www.linkedin.com/in/larry-ling-student/) - larryling.main@gmail.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Acknowledgements
+* [SVGRepo](https://www.svgrepo.com/)
+* [CSS-Tricks' Flexbox Layout Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [CSS-Tricks' Grid Layout Guide](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
-## Learn More
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- MARKDOWN LINKS & IMAGES -->
+[Typescript]: https://img.shields.io/badge/Typescript-20232A?style=for-the-badge&logo=typescript&logoColor=3178c6
+[Typescript-url]: https://www.typescriptlang.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
