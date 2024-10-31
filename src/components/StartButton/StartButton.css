@@ -1,3 +1,16 @@
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    20% { transform: translateX(5px) }
+    40% { transform: translateX(-5px) }
+    60% { transform: translateX(5px) }
+    80% { transform: translateX(-5px) }
+    100% { transform: translateX(0) }
+}
+
+.Horizontal-Shake {
+    animation: horizontal-shaking .5s infinite;
+}
+
 .Start-Button {
     font: var(--calltoaction);
 
@@ -25,3 +38,4 @@
     transform: scale(1);
     box-shadow: var(--shadow);
 }
+

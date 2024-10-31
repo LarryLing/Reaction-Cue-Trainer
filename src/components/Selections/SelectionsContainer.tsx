@@ -2,18 +2,18 @@ import './SelectionsContainer.css'
 import { ListIcon } from '../Icons/Icons';
 
 interface Props {
-    selectedCuesMap : Map<string, string[]>;
+    userSelectionsMap : Map<string, string[]>;
 }
 
 export default function SelectionsContainer(props : Props) {
-    const cueHTMLList = [ ...props.selectedCuesMap.keys() ].map( (key, id) =>
+    const cueHTMLList = [ ...props.userSelectionsMap.keys() ].map( (key, id) =>
                         <ul key={ id } className="Parent-List">
                             <li>
                                 <span>{ key }</span>
                                 <ul className="Child-List">
                                     <li>
                                         {
-                                            props.selectedCuesMap.get(key)?.join(", ")
+                                            props.userSelectionsMap.get(key)?.join(", ")
                                         }
                                     </li>
                                 </ul>
@@ -21,7 +21,7 @@ export default function SelectionsContainer(props : Props) {
                         </ul>
                     )
 
-    const mapIsEmpty = props.selectedCuesMap.size === 0;
+    const isMapEmpty = props.userSelectionsMap.size === 0;
 
     return (
         <div className="Outline Selections-Container">
@@ -29,9 +29,9 @@ export default function SelectionsContainer(props : Props) {
                 <ListIcon style={ {stroke: "var(--primary)"} } height={ 28 } width={ 28 } fill="none"/>
                 <span>Selections</span>
             </div>
-            <div className="Selections-Content" style={{alignItems : mapIsEmpty ? "center" : "", fontStyle : mapIsEmpty ? "italic" : ""}}>
+            <div className="Selections-Content" style={{alignItems : isMapEmpty ? "center" : "", fontStyle : isMapEmpty ? "italic" : ""}}>
                 {
-                    mapIsEmpty ? `Select some cues!` : cueHTMLList
+                    isMapEmpty ? `Select some cues!` : cueHTMLList
                 }
             </div>
         </div>

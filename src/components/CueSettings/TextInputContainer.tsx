@@ -1,43 +1,43 @@
 import { ChangeEvent, useContext, useState } from 'react'
+import { UserSelectionsContext } from '../../App';
 import './Settings.css'
 import './TextInputContainer.css'
-import { SelectedCuesContext } from '../../App';
 
 interface Props {
 	prompt : string;
 	identifier : string;
-	mapKey : string;
+	userSelectionsMapKey : string;
 	placeholderText : string;
-	defaultText : string;
 }
 
 export default function TextInputContainer(props : Props) {
-	const selectedCuesProvider = useContext(SelectedCuesContext);
-	const [ inputValue, setInputValue ] = useState(selectedCuesProvider?.selectedCuesMap.get(props.mapKey) ? selectedCuesProvider?.selectedCuesMap.get(props.mapKey)?.join(", ") : "");
-	
-	const onChange = (event : ChangeEvent<HTMLInputElement>) => {
-		const value = (event.target as HTMLInputElement).value;
+	const userSelectionsProvider = useContext(UserSelectionsContext);
 
-		setInputValue(value);
+	const [ inputValue, setInputValue ] = useState(userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey) ? userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey)?.join(", ") : "");
+	
+	const updateInputValue = (event : ChangeEvent<HTMLInputElement>) => {
+		const currentTargetValue = (event.target as HTMLInputElement).value;
+
+		setInputValue(currentTargetValue);
 	}
 
-	const onBlur = () => {
+	const updateUserSelectionsMap = () => {
 		if (inputValue == undefined) {
 			throw new Error("Input value is undefined!");
 		}
 
-		let formattedValue = inputValue.replace(/\s/g, "");
+		let formattedInputValue = inputValue.replace(/\s/g, "");
 		
-		if (formattedValue == "") {
-			const newMap = new Map<string, string[]>(selectedCuesProvider?.selectedCuesMap);
+		if (formattedInputValue == "") {
+			const updatedUserSelectionsMap = new Map<string, string[]>(userSelectionsProvider?.userSelectionsMap);
 
-			newMap.delete(props.mapKey);
+			updatedUserSelectionsMap.delete(props.userSelectionsMapKey);
 
-			selectedCuesProvider?.setSelectedCuesMap(newMap);
+			userSelectionsProvider?.setUserSelectionsMap(updatedUserSelectionsMap);
 		}
 		else {
-			selectedCuesProvider?.setSelectedCuesMap(
-				new Map<string, string[]>(selectedCuesProvider.selectedCuesMap).set(props.mapKey, formattedValue.split(","))
+			userSelectionsProvider?.setUserSelectionsMap(
+				new Map<string, string[]>(userSelectionsProvider.userSelectionsMap).set(props.userSelectionsMapKey, formattedInputValue.split(","))
 			);
 		}
 	}
@@ -53,8 +53,8 @@ export default function TextInputContainer(props : Props) {
 				id={ props.identifier }
 				name={ props.identifier }
 				placeholder={ props.placeholderText }
-				onChange={ (e) => onChange(e) }
-				onBlur={ onBlur }
+				onChange={ (e) => updateInputValue(e) }
+				onBlur={ updateUserSelectionsMap }
 				value={ inputValue }/>
 		</div>
     )

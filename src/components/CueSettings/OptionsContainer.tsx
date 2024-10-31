@@ -1,11 +1,11 @@
-import './Settings.css'
 import OptionItem from './OptionItem';
 import { Option } from '../Definitions';
 import './OptionsContainer.css';
+import './Settings.css'
 
 interface Props {
     prompt : string;
-    optionList : Option[];
+    optionsList : Option[];
 }
 
 export default function OptionsContainer(props : Props) {
@@ -16,13 +16,13 @@ export default function OptionsContainer(props : Props) {
             </div>
             <div className="Options-List">
                 {
-                    props.optionList.map( (item, id) => (
+                    props.optionsList.map( (item, id) => (
                         <OptionItem 
                             id={ id }
-                            name={ item.name }	
-                            primary={ item.primary }
-                            secondary={ item.secondary }
-                            mapKey={ item.mapKey }
+                            optionName={ item.optionName }	
+                            backgroundColor={ item.backgroundColor }
+                            outlineColor={ item.outlineColor }
+                            userSelectionsMapKey={ item.userSelectionsMapKey }
                             content={ item.content }/>
                     ))
                 }

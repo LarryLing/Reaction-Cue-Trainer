@@ -3,23 +3,23 @@ import { Circle, Ellipse, Heart, Hexagon, Octagon, Pentagon, Rectangle, Square, 
 import OptionsContainer from './CueSettings/OptionsContainer';
 import TextInputContainer from './CueSettings/TextInputContainer';
 
-export type AccordionContent = {
+export type AccordionItemContent = {
     id : number;
     title : string;
     content : ReactElement;
 }
 
 export type Option = {
-    name : string;
-    primary : string;
-    secondary : string;
-    mapKey : string;
+    optionName : string;
+    backgroundColor : string;
+    outlineColor : string;
+    userSelectionsMapKey : string;
     content? : ReactElement;
 }
 
-export type SelectedCuesType = {
-    selectedCuesMap : Map<string, string[]>;
-    setSelectedCuesMap : (arg0: Map<string, string[]>) => void;
+export type UserSelectionsType = {
+    userSelectionsMap : Map<string, string[]>;
+    setUserSelectionsMap : (arg0 : Map<string, string[]>) => void;
 }
 
 export type TimingsType = {
@@ -29,130 +29,130 @@ export type TimingsType = {
     setFrequency : (arg0 : number) => void;
 }
 
-export const colors : Option[] = [
+export const ColorOptionsList : Option[] = [
     {
-        name : "Red",
-        primary : "red",
-        secondary : "#AE0707",
-        mapKey : "Colors",
+        optionName : "Red",
+        backgroundColor : "red",
+        outlineColor : "#AE0707",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Orange",
-        primary : "orange",
-        secondary : "#EC6F09",
-        mapKey : "Colors",
+        optionName : "Orange",
+        backgroundColor : "orange",
+        outlineColor : "#EC6F09",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Yellow",
-        primary : "yellow",
-        secondary : "#D1C215",
-        mapKey : "Colors",
+        optionName : "Yellow",
+        backgroundColor : "yellow",
+        outlineColor : "#D1C215",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Green",
-        primary : "green",
-        secondary : "#1A5D01",
-        mapKey : "Colors",
+        optionName : "Green",
+        backgroundColor : "green",
+        outlineColor : "#1A5D01",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Blue",
-        primary : "#0842FE",
-        secondary : "#012AB2",
-        mapKey : "Colors",
+        optionName : "Blue",
+        backgroundColor : "#0842FE",
+        outlineColor : "#012AB2",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Pink",
-        primary : "#F58CFF",
-        secondary : "#F155FF",
-        mapKey : "Colors",
+        optionName : "Pink",
+        backgroundColor : "#F58CFF",
+        outlineColor : "#F155FF",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Purple",
-        primary : "#920DFF",
-        secondary : "#6101B0",
-        mapKey : "Colors",
+        optionName : "Purple",
+        backgroundColor : "#920DFF",
+        outlineColor : "#6101B0",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "White",
-        primary : "white",
-        secondary : "#DEDEDE",
-        mapKey : "Colors",
+        optionName : "White",
+        backgroundColor : "white",
+        outlineColor : "#DEDEDE",
+        userSelectionsMapKey : "Colors",
     },
     {
-        name : "Black",
-        primary : "#3B3B3B",
-        secondary : "black",
-        mapKey : "Colors",
+        optionName : "Black",
+        backgroundColor : "#3B3B3B",
+        outlineColor : "black",
+        userSelectionsMapKey : "Colors",
     },
 ]
 
-export const shapes : Option[] = [
+export const ShapeOptionsList : Option[] = [
     {
-        name : "Circle",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Circle",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Circle fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Ellipse",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Ellipse",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Ellipse fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Square",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Square",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Square fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Rectangle",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Rectangle",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Rectangle fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Pentagon",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Pentagon",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Pentagon fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Hexagon",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Hexagon",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Hexagon fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Octagon",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Octagon",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Octagon fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Star",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Star",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Star fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
     {
-        name : "Heart",
-        primary : "white",
-        secondary : "var(--primary)",
-        mapKey : "Shapes",
+        optionName : "Heart",
+        backgroundColor : "white",
+        outlineColor : "var(--primary)",
+        userSelectionsMapKey : "Shapes",
         content : <Heart fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
     },
 ]
 
-export const visualContent : AccordionContent[] = [
+export const VisualAccordionItemsList : AccordionItemContent[] = [
     {
         id : 1,
         title : "Colors",
@@ -160,7 +160,7 @@ export const visualContent : AccordionContent[] = [
             <div className="Settings-Container">
                 <OptionsContainer
                     prompt="Select Colors"
-                    optionList={colors}/>
+                    optionsList={ColorOptionsList}/>
 		    </div>
     },
     {
@@ -170,7 +170,7 @@ export const visualContent : AccordionContent[] = [
             <div className="Settings-Container">
                 <OptionsContainer
                     prompt="Select Shapes"
-                    optionList={shapes}/>
+                    optionsList={ShapeOptionsList}/>
             </div>
     },
     {
@@ -181,14 +181,13 @@ export const visualContent : AccordionContent[] = [
                 <TextInputContainer 
                     prompt="Enter Text" 
                     identifier="Text"
-                    mapKey="Text"
-                    placeholderText="ie: example, text, 1, 2, 3 - 5"
-                    defaultText=""/>
+                    userSelectionsMapKey="Text"
+                    placeholderText="ie: example, text, 1, 2, 3 - 5"/>
             </div>
     },
 ];
 
-export const audioContent : AccordionContent[] = [
+export const AudioAccordionItemsList : AccordionItemContent[] = [
     {
         id : 1,
         title : "Speech",

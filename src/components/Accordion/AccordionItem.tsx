@@ -9,15 +9,15 @@ interface Props {
 }
 
 export default function AccordionItem(props : Props) {
-    const [ toggled, setToggled ] = useState(false);
+    const [ isAccordionToggled, setIsAccordionToggled ] = useState(false);
 
     return (
         <div className="Accordion-Item">
-            <button className="Accordion-Item-Trigger" onClick={ () => setToggled(!toggled) }>
+            <button className="Accordion-Item-Trigger" onClick={ () => setIsAccordionToggled(!isAccordionToggled) }>
                 <span>{ props.title }</span>
-                <ChevronIcon className={ `Chevron ${ toggled ? "Rotate" : "" }` }/>
+                <ChevronIcon className={ `Chevron ${ isAccordionToggled ? "Rotate" : "" }` }/>
             </button>
-            <div className={ `Accordion-Item-Content ${ toggled ? "Open" : "" }` }>
+            <div className={ `Accordion-Item-Content ${ isAccordionToggled ? "Open" : "" }` }>
                 { props.content }
             </div>
         </div>

@@ -1,56 +1,57 @@
 import { ReactElement, useContext, useState } from 'react'
+import { UserSelectionsContext } from '../../App';
 import './OptionItem.css'
-import { SelectedCuesContext } from '../../App';
 
 interface Props {
     id : number;
-    name : string;
-    primary : string;
-    secondary : string;
-    mapKey : string;
+    optionName : string;
+    backgroundColor : string;
+    outlineColor : string;
+    userSelectionsMapKey : string;
     content? : ReactElement;
 }
 
 export default function OptionItem(props : Props) {
-    const selectedCuesProvider = useContext(SelectedCuesContext);
-    const selectedCuesMap : Map<string, string[]> | undefined = selectedCuesProvider?.selectedCuesMap;
-    const selectedCues : string[] | undefined = selectedCuesMap?.get(props.mapKey);
+    const userSelectionsProvider = useContext(UserSelectionsContext);
+
+    const userSelectionsMap : Map<string, string[]> | undefined = userSelectionsProvider?.userSelectionsMap;
+    const indexedUserSelections : string[] | undefined = userSelectionsMap?.get(props.userSelectionsMapKey);
 
     const determineIfToggled = () => {
-        if (!selectedCues) {
+        if (!indexedUserSelections) {
             return false;
         }
 
-        return selectedCues.includes(props.name);
+        return indexedUserSelections.includes(props.optionName);
     }
 
-    const [ toggled, setToggled ] = useState(determineIfToggled);
+    const [ isOptionItemToggled, setIsOptionItemToggled ] = useState(determineIfToggled);
 
-    const updatedSelectedCues = () => {
-        if (!selectedCues) {
-            selectedCuesProvider?.setSelectedCuesMap(new Map<string, string[]>(selectedCuesMap?.set(props.mapKey, [props.name])));
-            setToggled(true);
+    const updateUserSelectionsMap = () => {
+        if (!indexedUserSelections) {
+            userSelectionsProvider?.setUserSelectionsMap(new Map<string, string[]>(userSelectionsMap?.set(props.userSelectionsMapKey, [props.optionName])));
+            setIsOptionItemToggled(true);
         }
         else {
-            const index = selectedCues.indexOf(props.name)
+            const indexOfOption = indexedUserSelections.indexOf(props.optionName)
 
-            if (index > -1) {
-                selectedCuesProvider?.setSelectedCuesMap(
-                    new Map<string, string[]>(selectedCuesMap?.set(props.mapKey, selectedCues.filter(cue => cue !== props.name)))
+            if (indexOfOption > -1) {
+                userSelectionsProvider?.setUserSelectionsMap(
+                    new Map<string, string[]>(userSelectionsMap?.set(props.userSelectionsMapKey, indexedUserSelections.filter(cue => cue !== props.optionName)))
                 );
-                setToggled(false);
+                setIsOptionItemToggled(false);
 
-                if (selectedCuesProvider?.selectedCuesMap.get(props.mapKey)?.length === 0) {
-                    const newMap = new Map<string, string[]>(selectedCuesProvider?.selectedCuesMap);
+                if (userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey)?.length === 0) {
+                    const updatedSelectedCuesMap = new Map<string, string[]>(userSelectionsProvider?.userSelectionsMap);
 
-                    newMap.delete(props.mapKey);
+                    updatedSelectedCuesMap.delete(props.userSelectionsMapKey);
 
-                    selectedCuesProvider?.setSelectedCuesMap(newMap);
+                    userSelectionsProvider?.setUserSelectionsMap(updatedSelectedCuesMap);
                 }
             }
             else {
-                selectedCuesProvider?.setSelectedCuesMap(new Map<string, string[]>(selectedCuesMap?.set(props.mapKey, [ ...selectedCues, props.name ])));
-                setToggled(true);
+                userSelectionsProvider?.setUserSelectionsMap(new Map<string, string[]>(userSelectionsMap?.set(props.userSelectionsMapKey, [ ...indexedUserSelections, props.optionName ])));
+                setIsOptionItemToggled(true);
             }
         }
     }
@@ -60,10 +61,10 @@ export default function OptionItem(props : Props) {
             key={ props.id } 
             className="Option-Item" 
             style={ {
-                backgroundColor: `${props.primary}`, 
-                borderColor: `${props.secondary}`, 
-                borderWidth: toggled ? "var(--outlinewidth)" : "calc(var(--outlinewidth) * 0.5)"} }
-            onClick={ updatedSelectedCues }>
+                backgroundColor: `${props.backgroundColor}`, 
+                borderColor: `${props.outlineColor}`, 
+                borderWidth: isOptionItemToggled ? "var(--outlinewidth)" : "calc(var(--outlinewidth) * 0.5)"} }
+            onClick={ updateUserSelectionsMap }>
                 { props.content }
         </div>
     )

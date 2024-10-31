@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import "./Category.css";
+import "./CategoryItem.css";
 
 interface Props {
     title : string;
@@ -8,7 +8,7 @@ interface Props {
     onShow : () => void;
 }
 
-export default function Category(props : Props) {
+export default function CategoryItem(props : Props) {
     return (
         <button 
             className="Title-With-SVG Category" 

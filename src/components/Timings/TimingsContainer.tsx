@@ -1,39 +1,40 @@
 import { ChangeEvent, useContext, useState } from 'react'
 import { StopwatchIcon } from '../Icons/Icons'
-import './TimingsContainer.css'
 import { getSecondsFromHHMMSS, toHHMMSS } from '../HelperFunctions';
 import { TimingsContext } from '../../App'
+import './TimingsContainer.css'
 
 export default function TimingsContainer() {
     const timingsContextProvider = useContext(TimingsContext);
+
     const [ durationInputValue, setDurationInputValue ] = useState(toHHMMSS(timingsContextProvider?.duration));
     const [ frequencyInputValue, setFrequencyInputValue ] = useState(toHHMMSS(timingsContextProvider?.frequency));
 
-    const onChange = (event : ChangeEvent<HTMLInputElement>) => {
-        const name = (event.target as HTMLInputElement).name;
-        const value = (event.target as HTMLInputElement).value;
+    const updateInputValue = (event : ChangeEvent<HTMLInputElement>) => {
+        const currentTargetName = (event.target as HTMLInputElement).name;
+        const currentTargetValue = (event.target as HTMLInputElement).value;
 
-        if (name === "Duration") {
-            setDurationInputValue(value);
+        if (currentTargetName === "Duration") {
+            setDurationInputValue(currentTargetValue);
         }
         else {
-            setFrequencyInputValue(value);
+            setFrequencyInputValue(currentTargetValue);
         }
     };
 
-    const onBlur = (event : ChangeEvent<HTMLInputElement>) => {
-        const name = (event.target as HTMLInputElement).name;
-        const value = (event.target as HTMLInputElement).value;
-        const seconds = Math.max(0, getSecondsFromHHMMSS(value));
+    const updateTimings = (event : ChangeEvent<HTMLInputElement>) => {
+        const currentTargetName = (event.target as HTMLInputElement).name;
+        const currentTargetValue = (event.target as HTMLInputElement).value;
+        const seconds = Math.max(0, getSecondsFromHHMMSS(currentTargetValue));
 
-        const time = toHHMMSS(seconds);
+        const hhmmss = toHHMMSS(seconds);
 
-        if (name === "Duration") {
-            setDurationInputValue(time);
+        if (currentTargetName === "Duration") {
+            setDurationInputValue(hhmmss);
             timingsContextProvider?.setDuration(seconds);
         }
         else {
-            setFrequencyInputValue(time);
+            setFrequencyInputValue(hhmmss);
             timingsContextProvider?.setFrequency(seconds);
         }
     };
@@ -52,8 +53,8 @@ export default function TimingsContainer() {
                         type="text" 
                         id="Duration"
                         name="Duration"
-                        onChange={ (e) => onChange(e) }
-                        onBlur={ (e) => onBlur(e) }
+                        onChange={ (e) => updateInputValue(e) }
+                        onBlur={ (e) => updateTimings(e) }
                         value={ durationInputValue }/>
                 </div>
                 <div className="Timings-Subcontainer">
@@ -63,8 +64,8 @@ export default function TimingsContainer() {
                         type="text" 
                         id="Frequency"
                         name="Frequency"
-                        onChange={(e) => onChange(e)}
-                        onBlur={(e) => onBlur(e)}
+                        onChange={(e) => updateInputValue(e)}
+                        onBlur={(e) => updateTimings(e)}
                         value={ frequencyInputValue }/>
                 </div>
             </div>

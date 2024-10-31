@@ -1,25 +1,25 @@
-import './CategoriesContainer.css'
-import Category from './Category'
+import CategoryItem from './CategoryItem'
 import { EyeIcon, SpeakerIcon } from '../Icons/Icons'
+import './CategoriesContainer.css'
 
 interface Props {
-    displayCategory : string;
-    setDisplayCategory : (arg0 : string) => void;
+    stimulusCategory : string;
+    setStimulusCategory : (arg0 : string) => void;
 }
 
 export default function CategoriesContainer(props : Props) {
     return (
         <div className="Categories-Container">
-            <Category
+            <CategoryItem
                 title="Visual" 
-                svg={ <EyeIcon style={ {stroke: props.displayCategory === "Visual" ? "white" : "var(--primary)"} } height={ 29 } width={ 29 } fill="none"/> }
-                isActive={ props.displayCategory === "Visual" } 
-                onShow={ () => props.setDisplayCategory("Visual") }/>
-            <Category
+                svg={ <EyeIcon style={ {stroke: props.stimulusCategory === "Visual" ? "white" : "var(--primary)"} } height={ 29 } width={ 29 } fill="none"/> }
+                isActive={ props.stimulusCategory === "Visual" } 
+                onShow={ () => props.setStimulusCategory("Visual") }/>
+            <CategoryItem
                 title="Audio" 
-                svg={ <SpeakerIcon style={ {stroke: props.displayCategory === "Audio" ? "white" : "var(--primary)"} } height={ 29 } width={ 29 } fill="none"/> }
-                isActive={ props.displayCategory === "Audio" } 
-                onShow={ () => props.setDisplayCategory("Audio") }/>
+                svg={ <SpeakerIcon style={ {stroke: props.stimulusCategory === "Audio" ? "white" : "var(--primary)"} } height={ 29 } width={ 29 } fill="none"/> }
+                isActive={ props.stimulusCategory === "Audio" } 
+                onShow={ () => props.setStimulusCategory("Audio") }/>
         </div>
     )
 }
