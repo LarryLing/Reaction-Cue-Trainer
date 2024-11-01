@@ -1,5 +1,5 @@
-import './SelectionsContainer.css'
 import { ListIcon } from '../Icons/Icons';
+import './SelectionsContainer.css'
 
 interface Props {
     userSelectionsMap : Map<string, string[]>;
@@ -26,12 +26,12 @@ export default function SelectionsContainer(props : Props) {
     return (
         <div className="Outline Selections-Container">
             <div className="Title-With-SVG">
-                <ListIcon style={ {stroke: "var(--primary)"} } height={ 28 } width={ 28 } fill="none"/>
+                <ListIcon style={{ stroke: "var(--primary)" }} height={ 28 } width={ 28 } fill="none"/>
                 <span>Selections</span>
             </div>
-            <div className="Selections-Content" style={{alignItems : isMapEmpty ? "center" : "", fontStyle : isMapEmpty ? "italic" : ""}}>
+            <div className="Selections-Content" style={{ alignItems : isMapEmpty ? "center" : "", fontStyle : isMapEmpty ? "italic" : "" }}>
                 {
-                    isMapEmpty ? `Select some cues!` : cueHTMLList
+                    isMapEmpty ? `Make sure you select some cues before starting!` : cueHTMLList
                 }
             </div>
         </div>

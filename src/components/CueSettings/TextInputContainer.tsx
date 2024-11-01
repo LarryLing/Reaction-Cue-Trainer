@@ -36,9 +36,7 @@ export default function TextInputContainer(props : Props) {
 			userSelectionsProvider?.setUserSelectionsMap(updatedUserSelectionsMap);
 		}
 		else {
-			userSelectionsProvider?.setUserSelectionsMap(
-				new Map<string, string[]>(userSelectionsProvider.userSelectionsMap).set(props.userSelectionsMapKey, formattedInputValue.split(","))
-			);
+			userSelectionsProvider?.setUserSelectionsMap(new Map<string, string[]>(userSelectionsProvider.userSelectionsMap).set(props.userSelectionsMapKey, formattedInputValue.split(",")));
 		}
 	}
 

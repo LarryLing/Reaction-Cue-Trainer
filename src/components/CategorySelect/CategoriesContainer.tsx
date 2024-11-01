@@ -13,12 +13,12 @@ export default function CategoriesContainer(props : Props) {
             <CategoryItem
                 title="Visual" 
                 svg={ <EyeIcon style={ {stroke: props.stimulusCategory === "Visual" ? "white" : "var(--primary)"} } height={ 29 } width={ 29 } fill="none"/> }
-                isActive={ props.stimulusCategory === "Visual" } 
+                isSelected={ props.stimulusCategory === "Visual" } 
                 onShow={ () => props.setStimulusCategory("Visual") }/>
             <CategoryItem
                 title="Audio" 
                 svg={ <SpeakerIcon style={ {stroke: props.stimulusCategory === "Audio" ? "white" : "var(--primary)"} } height={ 29 } width={ 29 } fill="none"/> }
-                isActive={ props.stimulusCategory === "Audio" } 
+                isSelected={ props.stimulusCategory === "Audio" } 
                 onShow={ () => props.setStimulusCategory("Audio") }/>
         </div>
     )

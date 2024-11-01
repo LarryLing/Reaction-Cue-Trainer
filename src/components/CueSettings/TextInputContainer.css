@@ -17,6 +17,7 @@
     padding-bottom: 100px;
 
     font: var(--settingstext);
+    font-size: 16px;
 
     color: var(--secondary);
 }

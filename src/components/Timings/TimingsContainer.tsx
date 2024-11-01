@@ -68,6 +68,9 @@ export default function TimingsContainer() {
                         onBlur={(e) => updateTimings(e)}
                         value={ frequencyInputValue }/>
                 </div>
+                <div className="Warning-Text" style={{ display : (timingsContextProvider?.duration === 0 || timingsContextProvider?.frequency === 0) ? "block" : "none" }}>
+                    Make sure your input value(s) is not zero before starting!
+                </div>
             </div>
         </div>
     )

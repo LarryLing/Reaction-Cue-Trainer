@@ -6,6 +6,7 @@ import CategoriesContainer from './components/CategorySelect/CategoriesContainer
 import TimingsContainer from './components/Timings/TimingsContainer';
 import { UserSelectionsType, TimingsType } from './components/Definitions';
 import './App.css';
+import TrainingModal from './components/TrainingModal/TrainingModal';
 
 export const UserSelectionsContext = React.createContext<UserSelectionsType | null>(null);
 export const TimingsContext = React.createContext<TimingsType | null>(null);
@@ -34,9 +35,22 @@ function App() {
 					<TimingsContext.Provider value={{ duration, setDuration, frequency, setFrequency }}>
 						<TimingsContainer/>
 					</TimingsContext.Provider>
-					<StartButton duration={ duration } frequency={ frequency } isTrainingModeActive={ isTrainingModeActive } setIsTrainingModeActive={ setIsTrainingModeActive }/>
+					<StartButton 
+                        duration={ duration } 
+                        frequency={ frequency } 
+                        isUserSelectionsMapEmpty={ userSelectionsMap.size === 0 } 
+                        isTrainingModeActive={ isTrainingModeActive } 
+                        setIsTrainingModeActive={ setIsTrainingModeActive }/>
 				</div>
 			</div>
+            { 
+                isTrainingModeActive && <TrainingModal 
+                                            userSelectionsMap={ userSelectionsMap } 
+                                            duration={ duration } 
+                                            frequency={ frequency } 
+                                            isTrainingModeActive={ isTrainingModeActive } 
+                                            setIsTrainingModeActive={ setIsTrainingModeActive }/> 
+            }
 		</div>
 	);
 }
