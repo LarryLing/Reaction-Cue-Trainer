@@ -1,3 +1,5 @@
+import { ColorOptionsMap } from './Definitions';
+
 export function getSecondsFromHHMMSS(value : string) {
     const [ str1, str2, str3 ] = value.split(":");
 
@@ -35,4 +37,28 @@ export function toHHMMSS(secs : number | undefined) {
         .filter((val, index) => val !== "00" || index > 0)
         .join(":")
         .replace(/^0/, "");
+}
+
+export function getNewColor(userSelectionsMap : Map<string, string[]>) {
+    const userSelectionsMapKeys = [...userSelectionsMap.keys()];
+
+    if (userSelectionsMapKeys.includes("Colors")) {
+        const availableColors = userSelectionsMap.get("Colors");
+        const randomSelectedColor =  availableColors?.[Math.floor(Math.random() * availableColors.length)]
+
+        if (randomSelectedColor === undefined) {
+            throw new Error("An invalid ColorOptionsMap key was randomly generated!")
+        }
+
+        const startingColor = ColorOptionsMap.get(randomSelectedColor)?.backgroundColor;
+
+        if (startingColor === undefined) {
+            throw new Error("An invalid starting color was selected!");
+        }
+
+        return startingColor;
+        
+    }
+    
+    return "white";
 }

@@ -4,12 +4,12 @@ import AccordionContainer from './components/Accordion/AccordionContainer';
 import SelectionsContainer from './components/Selections/SelectionsContainer';
 import CategoriesContainer from './components/CategorySelect/CategoriesContainer';
 import TimingsContainer from './components/Timings/TimingsContainer';
-import { UserSelectionsType, TimingsType } from './components/Definitions';
-import './App.css';
 import TrainingModal from './components/TrainingModal/TrainingModal';
+import { UserSelectionsContextType, TimingsContextType } from './components/Definitions';
+import './App.css';
 
-export const UserSelectionsContext = React.createContext<UserSelectionsType | null>(null);
-export const TimingsContext = React.createContext<TimingsType | null>(null);
+export const UserSelectionsContext = React.createContext<UserSelectionsContextType | null>(null);
+export const TimingsContext = React.createContext<TimingsContextType | null>(null);
 
 function App() {
 	const [ stimulusCategory, setStimulusCategory ] = useState("Visual");

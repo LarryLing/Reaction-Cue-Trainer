@@ -34,13 +34,30 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
+1. At the top of the screen, you can select the category (Visual/Audio) you want to view.
+2. Each category contains unique stimuli that you can add to your list of selections.
+    * For text inputs, make sure that each word is separated by a ", ".
+    * For option inputs, click on the item(s) that you want to add.
+3. On the right side of the screen, you can verify your training setup.
+    * Double check to make sure each stimuli is present and adjusted to your preferences.
+    * Set how long the training mode will last by entering a time for `Duration`.
+    * Set how long it will take for a random stimulus to change by entering a time for `Frequency`.
+4. Once everything is setup, click the `Start` button!
+5. After training mode has been entered, it can exited manually at any time.
+
+### Important
+Please keep in mind that this version of the Reaction Cue Trainer only allows for one stimulus can change at a time. 
+The stimulus that changes is determined randomly by the app itself.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Future Developments
-- Implement user text input for visual cues
-- Implement "training" screen for when user clicks "Start"
-- Implement audio cues
+- Implement "Training Mode" for when user clicks the "Start" button
+- Implement Audio stimuli
+- Implement text input validation
+- Fix SVG resizing issue for Shape Options
+
+Click [here][Issues-url] to see the list of Issues!
 
 ## Contributing
 Since this personal project marks the beginning of my journey in web development, all feedback or open source developments are welcome!
@@ -77,3 +94,4 @@ Larry Ling - [@LinkedIn](https://www.linkedin.com/in/larry-ling-student/) - larr
 [Typescript-url]: https://www.typescriptlang.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Issues-url]: https://github.com/LarryLing/Reaction-Cue-Trainer/issues

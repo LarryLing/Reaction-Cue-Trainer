@@ -21,8 +21,6 @@
 }
 
 .Modal-Container {
-    background: white;
-
     position: absolute;
     float: left;
     left: 50%;
@@ -45,4 +43,10 @@
     right: var(--padding);
 
     cursor: pointer;
+
+    transition: all 0.2s;
+}
+
+.Exit-Modal-Button:hover {
+    transform: scale(1.015);
 }

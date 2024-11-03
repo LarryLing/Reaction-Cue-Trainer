@@ -3,7 +3,7 @@ import { UserSelectionsContext } from '../../App';
 import './OptionItem.css'
 
 interface Props {
-    id : number;
+    key : string;
     optionName : string;
     backgroundColor : string;
     outlineColor : string;
@@ -58,7 +58,7 @@ export default function OptionItem(props : Props) {
 
     return (
         <div
-            key={ props.id } 
+            key={ props.key }
             className="Option-Item" 
             style={ {
                 backgroundColor: `${props.backgroundColor}`, 
