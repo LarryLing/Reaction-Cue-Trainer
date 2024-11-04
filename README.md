@@ -40,9 +40,9 @@
     * For option inputs, click on the item(s) that you want to add.
 3. On the right side of the screen, you can verify your training setup.
     * Double check to make sure each stimuli is present and adjusted to your preferences.
-    * Set how long the training mode will last by entering a time for `Duration`.
-    * Set how long it will take for a random stimulus to change by entering a time for `Frequency`.
-4. Once everything is setup, click the `Start` button!
+    * Set how long the training mode will last by entering a time for "Duration".
+    * Set how long it will take for a random stimulus to change by entering a time for "Frequency".
+4. Once everything is setup, click the "Start" button!
 5. After training mode has been entered, it can exited manually at any time.
 
 ### Important

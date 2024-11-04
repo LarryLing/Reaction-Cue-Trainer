@@ -28,10 +28,12 @@ export type TimingsContextType = {
     setFrequency : (arg0 : number) => void;
 }
 
-export type VisualObjType = {
+export type TrainingModeType = {
     color : string;
     shape : ReactElement;
     text : ReactElement;
+    speech : string;
+    sfx : string;
 }
 
 export const ColorOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([   

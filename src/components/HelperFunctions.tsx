@@ -1,4 +1,4 @@
-import { ColorOptionsMap } from './Definitions';
+import { ColorOptionsMap, ShapeOptionsMap } from './Definitions';
 
 export function getSecondsFromHHMMSS(value : string) {
     const [ str1, str2, str3 ] = value.split(":");
@@ -39,26 +39,91 @@ export function toHHMMSS(secs : number | undefined) {
         .replace(/^0/, "");
 }
 
-export function getNewColor(userSelectionsMap : Map<string, string[]>) {
-    const userSelectionsMapKeys = [...userSelectionsMap.keys()];
+export function userSelectionsMapHasKey(userSelectionsMap : Map<string, string[]>, mapKey : string) {
+    const mapKeys = [...userSelectionsMap.keys()];
 
-    if (userSelectionsMapKeys.includes("Colors")) {
-        const availableColors = userSelectionsMap.get("Colors");
-        const randomSelectedColor =  availableColors?.[Math.floor(Math.random() * availableColors.length)]
+    return mapKeys.includes(mapKey);
+}
 
-        if (randomSelectedColor === undefined) {
-            throw new Error("An invalid ColorOptionsMap key was randomly generated!")
-        }
+export function selectShapesOrText(userSelectionsMap : Map<string, string[]>) {
+    const userSelectedShapes = userSelectionsMapHasKey(userSelectionsMap, "Shapes");
+    const userSelectedText = userSelectionsMapHasKey(userSelectionsMap, "Text")
 
-        const startingColor = ColorOptionsMap.get(randomSelectedColor)?.backgroundColor;
-
-        if (startingColor === undefined) {
-            throw new Error("An invalid starting color was selected!");
-        }
-
-        return startingColor;
-        
+    if (userSelectedShapes && userSelectedText) {
+        return Math.random() < 0.5 ? "Shapes" : "Text";
     }
-    
-    return "white";
+    else if (userSelectedShapes) {
+        return "Shapes";
+    }
+    else if (userSelectedText) {
+        return "Text";
+    }
+    else {
+        return "";
+    }
+}
+
+export function getColor(userSelectionsMap : Map<string, string[]>) {
+    if (!userSelectionsMapHasKey(userSelectionsMap, "Colors")) {
+        return "white";
+    }
+
+    const availableColors = userSelectionsMap.get("Colors");
+    const selectedColor = availableColors?.[Math.floor(Math.random() * availableColors.length)];
+
+    if (selectedColor === undefined) {
+        throw new Error("An invalid color was selected!");
+    }
+
+    const displayColor = ColorOptionsMap?.get(selectedColor)?.backgroundColor;
+
+    if (displayColor === undefined) {
+        throw new Error("Tried to display an invalid color!");
+    }
+
+    return displayColor;
+}
+
+export function getShape(userSelectionsMap : Map<string, string[]>) {
+    if (!userSelectionsMapHasKey(userSelectionsMap, "Shapes")) {
+        return <></>;
+    }
+
+    const availableShapes = userSelectionsMap.get("Shapes");
+    const selectedShape = availableShapes?.[Math.floor(Math.random() * availableShapes.length)];
+
+    if (selectedShape === undefined) {
+        throw new Error("An invalid shape was selected!");
+    }
+
+    const displayShape = ShapeOptionsMap?.get(selectedShape)?.content;
+
+    if (displayShape === undefined) {
+        throw new Error("Tried to display an invalid shape!");
+    }
+
+    return (
+        <div>
+            { displayShape }
+        </div>
+    );
+}
+
+export function getText(userSelectionsMap : Map<string, string[]>) {
+    if (!userSelectionsMapHasKey(userSelectionsMap, "Text")) {
+        return <></>;
+    }
+
+    const availableText = userSelectionsMap.get("Text");
+    const displayText = availableText?.[Math.floor(Math.random() * availableText.length)];
+
+    if (displayText === undefined) {
+        throw new Error("An invalid text was selected!");
+    }
+
+    return (
+        <div>
+            { displayText }
+        </div>
+    );
 }

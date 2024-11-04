@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { VisualObjType } from '../Definitions';
+import { TrainingModeType } from '../Definitions';
 import { CrossIcon } from '../Icons/Icons';
+import { getColor, getShape, getText, selectShapesOrText } from '../HelperFunctions';
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 import './TrainingModal.css';
-import { getNewColor } from '../HelperFunctions';
 
 interface Props {
     userSelectionsMap : Map<string, string[]>;
@@ -13,13 +14,18 @@ interface Props {
 }
 
 export default function TrainingModal(props : Props) {
+    useLockBodyScroll();
+    
     const [ timeRemaining, setTimeRemaining ] = useState(props.duration);
     const [ timeUntilNextStimulus, setTimeUntilNextStimulus ] = useState(props.frequency);
-    const [ trainingModeState, setTrainingModeState ] = useState<VisualObjType>(
+    const [ displayShapesOrText, setDisplayShapesOrText ] = useState(selectShapesOrText(props.userSelectionsMap));
+    const [ trainingModeState, setTrainingModeState ] = useState<TrainingModeType>(
         {
-            color : getNewColor(props.userSelectionsMap),
-            shape : <></>,
-            text : <></>,
+            color : getColor(props.userSelectionsMap),
+            shape : getShape(props.userSelectionsMap),
+            text : getText(props.userSelectionsMap),
+            speech : "",
+            sfx : "",
         }
     )
 
@@ -30,9 +36,9 @@ export default function TrainingModal(props : Props) {
         }
 
         if (timeUntilNextStimulus === 0) {
-            const [randomUserSelectionsMapKey, randomStimulus] = getNewStimulus();
+            const nextStimulus = getNextStimulus();
 
-            updateTrainingModeState(randomUserSelectionsMapKey, randomStimulus);
+            updateTrainingModeState(nextStimulus);
 
             setTimeUntilNextStimulus(props.frequency);
         }
@@ -45,33 +51,54 @@ export default function TrainingModal(props : Props) {
         return () => clearInterval(interval);
     }, [timeRemaining, timeUntilNextStimulus]);
 
-    const getNewStimulus = () => {
-        const userSelectionsMapKeys = [...props.userSelectionsMap.keys()];
-        const randomUserSelectionsMapKey = userSelectionsMapKeys[Math.floor(Math.random() * userSelectionsMapKeys.length)];
+    const getNextStimulus = () => {
+        const stimulusList = [...props.userSelectionsMap.keys()];
+        const nextStimulus = stimulusList[Math.floor(Math.random() * stimulusList.length)];
 
-        const stimulusList = props.userSelectionsMap.get(randomUserSelectionsMapKey);
-        const randomStimulus = stimulusList?.[Math.floor(Math.random() * stimulusList.length)];
-
-        return [randomUserSelectionsMapKey, randomStimulus];
+        return nextStimulus;
     }
 
-    const updateTrainingModeState = (randomUserSelectionsMapKey : string | undefined, randomStimulus : string | undefined) => {
-        if (randomUserSelectionsMapKey === undefined) {
+    const updateTrainingModeState = (nextStimulus : string) => {
+        if (nextStimulus === undefined) {
             throw new Error("An invalid stimulus group name was randomly selected!");
         }
 
-        if (randomStimulus === undefined) {
-            throw new Error("An invalid stimulus was randomly selected!");
-        }
-
-        switch (randomUserSelectionsMapKey) {
+        switch (nextStimulus) {
             case "Colors":
-                const newColor = getNewColor(props.userSelectionsMap);
+                const newColor = getColor(props.userSelectionsMap);
 
                 setTrainingModeState({
                     color : newColor,
                     shape : trainingModeState.shape,
-                    text : trainingModeState.text
+                    text : trainingModeState.text,
+                    speech : trainingModeState.speech,
+                    sfx : trainingModeState.sfx,
+                })
+                break;
+
+            case "Shapes":
+                const newShape = getShape(props.userSelectionsMap);
+
+                setDisplayShapesOrText("Shapes");
+                setTrainingModeState({
+                    color : trainingModeState.color,
+                    shape : newShape,
+                    text : trainingModeState.text,
+                    speech : trainingModeState.speech,
+                    sfx : trainingModeState.sfx,
+                })
+                break;
+
+            case "Text":
+                const newText = getText(props.userSelectionsMap);
+
+                setDisplayShapesOrText("Text");
+                setTrainingModeState({
+                    color : trainingModeState.color,
+                    shape : trainingModeState.shape,
+                    text : newText,
+                    speech : trainingModeState.speech,
+                    sfx : trainingModeState.sfx,
                 })
                 break;
         }      
@@ -79,8 +106,14 @@ export default function TrainingModal(props : Props) {
 
     return (
         <div className="Modal-Container" style={{ background : trainingModeState.color }}>
-            <div>{ timeRemaining }</div>
-            <div>{ timeUntilNextStimulus }</div>
+            <div>{timeRemaining}</div>
+            <div>{timeUntilNextStimulus}</div>
+            {
+                displayShapesOrText === "Shapes" ? trainingModeState.shape : <></>
+            }
+            {
+                displayShapesOrText === "Text" ? trainingModeState.text : <></>
+            }
             <CrossIcon 
                 className="Exit-Modal-Button" 
                 onClick={ () => props.setIsTrainingModeActive(false) }

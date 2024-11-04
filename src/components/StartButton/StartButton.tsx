@@ -19,6 +19,8 @@ export default function StartButton(props : Props) {
             setTimeout(() => setIsButtonShaking(false), 500);
         }
         else {
+            window.scrollTo({ top: 0, left: 0} );
+        
             props.setIsTrainingModeActive(true);
         }
     }

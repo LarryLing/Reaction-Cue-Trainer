@@ -1,25 +1,3 @@
-@keyframes TrainingModalRollin {
-    0% { 
-        transform: translate(-50%, -60%);
-        opacity: 0;
-    }
-    100% { 
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-@keyframes TrainingModalRollout {
-    0% { 
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-    100% { 
-        transform: translate(-50%, -60%);
-        opacity: 0;
-    }
-}
-
 .Modal-Container {
     position: absolute;
     float: left;
@@ -29,9 +7,7 @@
 
     width: 100%;
     height: 100%;
-
-    animation: TrainingModalRollin 0.3s;
-
+    
     display: flex;
     align-items: center;
     justify-content: center;

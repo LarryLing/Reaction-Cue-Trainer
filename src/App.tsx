@@ -6,6 +6,7 @@ import CategoriesContainer from './components/CategorySelect/CategoriesContainer
 import TimingsContainer from './components/Timings/TimingsContainer';
 import TrainingModal from './components/TrainingModal/TrainingModal';
 import { UserSelectionsContextType, TimingsContextType } from './components/Definitions';
+import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
 export const UserSelectionsContext = React.createContext<UserSelectionsContextType | null>(null);
@@ -43,14 +44,23 @@ function App() {
                         setIsTrainingModeActive={ setIsTrainingModeActive }/>
 				</div>
 			</div>
-            { 
-                isTrainingModeActive && <TrainingModal 
-                                            userSelectionsMap={ userSelectionsMap } 
-                                            duration={ duration } 
-                                            frequency={ frequency } 
-                                            isTrainingModeActive={ isTrainingModeActive } 
-                                            setIsTrainingModeActive={ setIsTrainingModeActive }/> 
-            }
+            <AnimatePresence>
+                { 
+                    isTrainingModeActive && (<motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, transition: { duration: 0.2 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                        > 
+                            <TrainingModal 
+                                userSelectionsMap={ userSelectionsMap } 
+                                duration={ duration } 
+                                frequency={ frequency } 
+                                isTrainingModeActive={ isTrainingModeActive } 
+                                setIsTrainingModeActive={ setIsTrainingModeActive }/>
+                        </motion.div>)
+                }
+            </AnimatePresence>
+
 		</div>
 	);
 }
