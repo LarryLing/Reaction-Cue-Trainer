@@ -42,6 +42,9 @@ function App() {
                         isUserSelectionsMapEmpty={ userSelectionsMap.size === 0 } 
                         isTrainingModeActive={ isTrainingModeActive } 
                         setIsTrainingModeActive={ setIsTrainingModeActive }/>
+                    <p className="Heads-Up-Text">
+                        For the optimal viewing experience on mobile devices, please use Landscape mode.
+                    </p>
 				</div>
 			</div>
             <AnimatePresence>

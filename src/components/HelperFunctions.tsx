@@ -1,3 +1,4 @@
+import { ReactElement, cloneElement } from 'react';
 import { ColorOptionsMap, ShapeOptionsMap } from './Definitions';
 
 export function getSecondsFromHHMMSS(value : string) {
@@ -39,13 +40,25 @@ export function toHHMMSS(secs : number | undefined) {
         .replace(/^0/, "");
 }
 
+export function createClonedSVG(svgToClone : ReactElement | undefined, newWidth : number | string, newHeight : number | string) {
+    if (svgToClone === undefined) {
+        return svgToClone;
+    }
+
+    const clonedElement = cloneElement(
+        svgToClone, { width: newWidth, height: newHeight }
+    );
+
+    return clonedElement;
+}
+
 export function userSelectionsMapHasKey(userSelectionsMap : Map<string, string[]>, mapKey : string) {
     const mapKeys = [...userSelectionsMap.keys()];
 
     return mapKeys.includes(mapKey);
 }
 
-export function selectShapesOrText(userSelectionsMap : Map<string, string[]>) {
+export function startWithShapesOrText(userSelectionsMap : Map<string, string[]>) {
     const userSelectedShapes = userSelectionsMapHasKey(userSelectionsMap, "Shapes");
     const userSelectedText = userSelectionsMapHasKey(userSelectionsMap, "Text")
 
@@ -102,10 +115,10 @@ export function getShape(userSelectionsMap : Map<string, string[]>) {
         throw new Error("Tried to display an invalid shape!");
     }
 
+    const clonedShape = createClonedSVG(displayShape, "100%", "100%");
+
     return (
-        <div>
-            { displayShape }
-        </div>
+        clonedShape
     );
 }
 
@@ -122,8 +135,6 @@ export function getText(userSelectionsMap : Map<string, string[]>) {
     }
 
     return (
-        <div>
-            { displayText }
-        </div>
+        displayText
     );
 }

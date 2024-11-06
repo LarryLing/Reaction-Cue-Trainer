@@ -55,7 +55,6 @@ The stimulus that changes is determined randomly by the app itself.
 - Implement "Training Mode" for when user clicks the "Start" button
 - Implement Audio stimuli
 - Implement text input validation
-- Fix SVG resizing issue for Shape Options
 
 Click [here][Issues-url] to see the list of Issues!
 

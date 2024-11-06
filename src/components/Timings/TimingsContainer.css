@@ -44,13 +44,3 @@
 
     text-align: center;
 }
-
-.Warning-Text {
-    margin: 0px;
-    padding: 0px;
-
-    font: var(--warningtext);
-    font-size: 12px;
-    font-style: italic;
-    color: var(--secondary);
-}

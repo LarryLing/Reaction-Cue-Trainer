@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TrainingModeType } from '../Definitions';
 import { CrossIcon } from '../Icons/Icons';
-import { getColor, getShape, getText, selectShapesOrText } from '../HelperFunctions';
+import { getColor, getShape, getText, startWithShapesOrText } from '../HelperFunctions';
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import './TrainingModal.css';
 
@@ -18,12 +18,12 @@ export default function TrainingModal(props : Props) {
     
     const [ timeRemaining, setTimeRemaining ] = useState(props.duration);
     const [ timeUntilNextStimulus, setTimeUntilNextStimulus ] = useState(props.frequency);
-    const [ displayShapesOrText, setDisplayShapesOrText ] = useState(selectShapesOrText(props.userSelectionsMap));
+    const [ displayShapesOrText, setDisplayShapesOrText ] = useState(startWithShapesOrText(props.userSelectionsMap));
     const [ trainingModeState, setTrainingModeState ] = useState<TrainingModeType>(
         {
             color : getColor(props.userSelectionsMap),
-            shape : getShape(props.userSelectionsMap),
-            text : getText(props.userSelectionsMap),
+            shape : <div className="Shapes-Text-Div">{ getShape(props.userSelectionsMap) }</div>,
+            text : <div className="Shapes-Text-Div">{ getText(props.userSelectionsMap) }</div>,
             speech : "",
             sfx : "",
         }
@@ -77,7 +77,9 @@ export default function TrainingModal(props : Props) {
                 break;
 
             case "Shapes":
-                const newShape = getShape(props.userSelectionsMap);
+                const newShape = <div className="Shapes-Text-Div">
+                    { getShape(props.userSelectionsMap) }
+                </div>
 
                 setDisplayShapesOrText("Shapes");
                 setTrainingModeState({
@@ -90,7 +92,9 @@ export default function TrainingModal(props : Props) {
                 break;
 
             case "Text":
-                const newText = getText(props.userSelectionsMap);
+                const newText = <div className="Shapes-Text-Div">
+                    { getText(props.userSelectionsMap) }
+                </div>
 
                 setDisplayShapesOrText("Text");
                 setTrainingModeState({
@@ -106,8 +110,8 @@ export default function TrainingModal(props : Props) {
 
     return (
         <div className="Modal-Container" style={{ background : trainingModeState.color }}>
-            <div>{timeRemaining}</div>
-            <div>{timeUntilNextStimulus}</div>
+            {/* <div>{timeRemaining}</div>
+            <div>{timeUntilNextStimulus}</div> */}
             {
                 displayShapesOrText === "Shapes" ? trainingModeState.shape : <></>
             }

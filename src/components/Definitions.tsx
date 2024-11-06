@@ -118,7 +118,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Circle fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Circle fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -127,7 +127,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Ellipse fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Ellipse fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -136,7 +136,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Square fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Square fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -145,7 +145,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Rectangle fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Rectangle fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -154,7 +154,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Pentagon fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Pentagon fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -163,7 +163,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Hexagon fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Hexagon fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -172,7 +172,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Octagon fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Octagon fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -181,7 +181,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Star fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Star fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ],
     [
@@ -190,7 +190,7 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
             backgroundColor : "white",
             outlineColor : "var(--primary)",
             userSelectionsMapKey : "Shapes",
-            content : <Heart fill="var(--primary)" stroke="var(--primary)" width={ 60 } height={ 60 }/>,
+            content : <Heart fill="var(--primary)" stroke="var(--primary)"/>,
         },
     ]
 ]);

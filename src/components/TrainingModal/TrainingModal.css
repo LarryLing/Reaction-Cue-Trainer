@@ -26,3 +26,16 @@
 .Exit-Modal-Button:hover {
     transform: scale(1.015);
 }
+
+.Shapes-Text-Div {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25vmin;
+    font-weight: bold;
+    color: var(--primary);
+}

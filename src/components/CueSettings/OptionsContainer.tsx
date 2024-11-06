@@ -1,5 +1,6 @@
 import OptionItem from './OptionItem';
 import { OptionItemRenderInfoType } from '../Definitions';
+import { createClonedSVG } from '../HelperFunctions';
 import { uid } from 'uid';
 import './OptionsContainer.css';
 import './Settings.css'
@@ -39,7 +40,7 @@ export default function OptionsContainer(props : Props) {
                             backgroundColor={ optionMapKVP.backgroundColor }
                             outlineColor={ optionMapKVP.outlineColor }
                             userSelectionsMapKey={ optionMapKVP.userSelectionsMapKey }
-                            content={ optionMapKVP.content }/>
+                            content={ createClonedSVG(optionMapKVP.content, "100%", "100%") }/>
                     ))
                 }
             </div>
