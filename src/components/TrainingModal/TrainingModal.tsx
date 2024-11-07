@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { TrainingModeType } from '../Definitions';
 import { CrossIcon } from '../Icons/Icons';
-import { getColor, getShape, getText, startWithShapesOrText } from '../HelperFunctions';
+import { getNextColorObj, getNextShapeObj, getNextTextObj, startWithShapesOrText } from '../HelperFunctions';
 import { useLockBodyScroll } from "@uidotdev/usehooks";
+import { toHHMMSS } from '../HelperFunctions';
 import './TrainingModal.css';
 
 interface Props {
@@ -11,6 +12,9 @@ interface Props {
     frequency : number;
     isTrainingModeActive : boolean;
     setIsTrainingModeActive : (arg0 : boolean) => void;
+    isDurationVisible : boolean;
+    isFrequencyVisible : boolean;
+    isUniqueEnabled : boolean;
 }
 
 export default function TrainingModal(props : Props) {
@@ -21,9 +25,9 @@ export default function TrainingModal(props : Props) {
     const [ displayShapesOrText, setDisplayShapesOrText ] = useState(startWithShapesOrText(props.userSelectionsMap));
     const [ trainingModeState, setTrainingModeState ] = useState<TrainingModeType>(
         {
-            color : getColor(props.userSelectionsMap),
-            shape : <div className="Shapes-Text-Div">{ getShape(props.userSelectionsMap) }</div>,
-            text : <div className="Shapes-Text-Div">{ getText(props.userSelectionsMap) }</div>,
+            colorObj : getNextColorObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
+            shapeObj : getNextShapeObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
+            textObj :  getNextTextObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
             speech : "",
             sfx : "",
         }
@@ -65,42 +69,38 @@ export default function TrainingModal(props : Props) {
 
         switch (nextStimulus) {
             case "Colors":
-                const newColor = getColor(props.userSelectionsMap);
+                const nextColorObj = getNextColorObj(props.userSelectionsMap, trainingModeState.colorObj.name, props.isUniqueEnabled);
 
                 setTrainingModeState({
-                    color : newColor,
-                    shape : trainingModeState.shape,
-                    text : trainingModeState.text,
+                    colorObj : nextColorObj,
+                    shapeObj : trainingModeState.shapeObj,
+                    textObj : trainingModeState.textObj,
                     speech : trainingModeState.speech,
                     sfx : trainingModeState.sfx,
                 })
                 break;
 
             case "Shapes":
-                const newShape = <div className="Shapes-Text-Div">
-                    { getShape(props.userSelectionsMap) }
-                </div>
+                const nextShapeObj = getNextShapeObj(props.userSelectionsMap, trainingModeState.shapeObj.name, props.isUniqueEnabled)
 
                 setDisplayShapesOrText("Shapes");
                 setTrainingModeState({
-                    color : trainingModeState.color,
-                    shape : newShape,
-                    text : trainingModeState.text,
+                    colorObj : trainingModeState.colorObj,
+                    shapeObj : nextShapeObj,
+                    textObj : trainingModeState.textObj,
                     speech : trainingModeState.speech,
                     sfx : trainingModeState.sfx,
                 })
                 break;
 
             case "Text":
-                const newText = <div className="Shapes-Text-Div">
-                    { getText(props.userSelectionsMap) }
-                </div>
+                const nextTextObj = getNextTextObj(props.userSelectionsMap, trainingModeState.textObj.name, props.isUniqueEnabled)
 
                 setDisplayShapesOrText("Text");
                 setTrainingModeState({
-                    color : trainingModeState.color,
-                    shape : trainingModeState.shape,
-                    text : newText,
+                    colorObj : trainingModeState.colorObj,
+                    shapeObj : trainingModeState.shapeObj,
+                    textObj : nextTextObj,
                     speech : trainingModeState.speech,
                     sfx : trainingModeState.sfx,
                 })
@@ -109,14 +109,24 @@ export default function TrainingModal(props : Props) {
     }
 
     return (
-        <div className="Modal-Container" style={{ background : trainingModeState.color }}>
-            {/* <div>{timeRemaining}</div>
-            <div>{timeUntilNextStimulus}</div> */}
+        <div className="Modal-Container" style={{ background : trainingModeState.colorObj.colorCode }}>
+            <div className="Duration-Frequency-Container">
+                { 
+                    props.isDurationVisible && 
+                        <div className="Duration-Frequency-Text">
+                            Time Remaining: { toHHMMSS(timeRemaining) }
+                        </div>
+                }
+                { 
+                    props.isFrequencyVisible && 
+                        <div className="Duration-Frequency-Text">
+                            Time Until Next Stimulus: { toHHMMSS(timeUntilNextStimulus) }
+                        </div>
+                }
+            </div>
             {
-                displayShapesOrText === "Shapes" ? trainingModeState.shape : <></>
-            }
-            {
-                displayShapesOrText === "Text" ? trainingModeState.text : <></>
+                (displayShapesOrText === "Shapes" && trainingModeState.shapeObj.shapeElement) || 
+                (displayShapesOrText === "Text" && trainingModeState.textObj.textElement)
             }
             <CrossIcon 
                 className="Exit-Modal-Button" 

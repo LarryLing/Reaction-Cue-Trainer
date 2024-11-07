@@ -3,14 +3,13 @@ import StartButton from './components/StartButton/StartButton';
 import AccordionContainer from './components/Accordion/AccordionContainer';
 import SelectionsContainer from './components/Selections/SelectionsContainer';
 import CategoriesContainer from './components/CategorySelect/CategoriesContainer';
-import TimingsContainer from './components/Timings/TimingsContainer';
+import TrainingSetupContainer from './components/TrainingSetup/TrainingSetupContainer';
 import TrainingModal from './components/TrainingModal/TrainingModal';
-import { UserSelectionsContextType, TimingsContextType } from './components/Definitions';
+import { UserSelectionsContextType } from './components/Definitions';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
 export const UserSelectionsContext = React.createContext<UserSelectionsContextType | null>(null);
-export const TimingsContext = React.createContext<TimingsContextType | null>(null);
 
 function App() {
 	const [ stimulusCategory, setStimulusCategory ] = useState("Visual");
@@ -18,6 +17,9 @@ function App() {
 	const [ duration, setDuration ] = useState(300);
 	const [ frequency, setFrequency ] = useState(5);
     const [ isTrainingModeActive, setIsTrainingModeActive ] = useState(false);
+    const [ isDurationVisible, setIsDurationVisible ] = useState(false);
+    const [ isFrequencyVisible, setIsFrequencyVisible ] = useState(false);
+    const [ isUniqueEnabled, setIsUniqueEnabled ] = useState(false);
 
 	return (
 		<div className="App">
@@ -33,9 +35,12 @@ function App() {
 				</div>
 				<div className="Column Selections-Timings-Start-Container">
 					<SelectionsContainer userSelectionsMap={ userSelectionsMap }/>
-					<TimingsContext.Provider value={{ duration, setDuration, frequency, setFrequency }}>
-						<TimingsContainer/>
-					</TimingsContext.Provider>
+                    <TrainingSetupContainer 
+                        duration={ duration } setDuration={ setDuration }
+                        frequency={ frequency } setFrequency={ setFrequency }
+                        isDurationVisible={ isDurationVisible } setIsDurationVisible={ setIsDurationVisible }
+                        isFrequencyVisible={ isFrequencyVisible } setIsFrequencyVisible={ setIsFrequencyVisible }
+                        isUniqueEnabled={ isUniqueEnabled } setIsUniqueEnabled={ setIsUniqueEnabled }/>
 					<StartButton 
                         duration={ duration } 
                         frequency={ frequency } 
@@ -59,11 +64,13 @@ function App() {
                                 duration={ duration } 
                                 frequency={ frequency } 
                                 isTrainingModeActive={ isTrainingModeActive } 
-                                setIsTrainingModeActive={ setIsTrainingModeActive }/>
+                                setIsTrainingModeActive={ setIsTrainingModeActive }
+                                isDurationVisible={ isDurationVisible }
+                                isFrequencyVisible={ isFrequencyVisible }
+                                isUniqueEnabled={ isUniqueEnabled }/>
                         </motion.div>)
                 }
             </AnimatePresence>
-
 		</div>
 	);
 }

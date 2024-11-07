@@ -22,10 +22,14 @@
     font: var(--settingstext);
     
     width: 100%;
+
+    font-style: italic;
 }   
 
 .Parent-List, .Child-List {
     padding-left: 20px;
+
+    font-style: normal;
 }
 
 .Parent-List > li {

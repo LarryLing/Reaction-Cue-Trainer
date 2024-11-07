@@ -1,32 +1,21 @@
-.Text-Input-Container {
+.Text-Input-Subcontainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: var(--verticalspacing);
-
-    color: var(--secondary);
-
     align-items: center;
+    gap: var(--verticalspacing);
 }
 
-.Text-Input {
+.Text-Input-Setup {
     border-radius: var(--radius);
     border-color: var(--secondary);
 
     width: 60%;
-    padding-bottom: 100px;
 
     font: var(--settingstext);
     font-size: 16px;
 
     color: var(--secondary);
-}
 
-.Text-Input::placeholder {
-    font-style: italic;
-}
-
-.Text-Input:focus::placeholder {
-    color: transparent;
-    border-color: var(--primary)
+    text-align: center;
 }

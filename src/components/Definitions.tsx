@@ -1,7 +1,7 @@
 import { ReactElement }  from 'react'
 import { Circle, Ellipse, Heart, Hexagon, Octagon, Pentagon, Rectangle, Square, Star } from './Icons/Shapes';
 import OptionsContainer from './CueSettings/OptionsContainer';
-import TextInputContainer from './CueSettings/TextInputContainer';
+import TextInputItem from './CueSettings/TextInputItem';
 
 export type AccordionItemContentType = {
     id : number;
@@ -21,17 +21,25 @@ export type UserSelectionsContextType = {
     setUserSelectionsMap : (arg0 : Map<string, string[]>) => void;
 }
 
-export type TimingsContextType = {
-    duration : number;
-    setDuration : (arg0 : number) => void;
-    frequency : number;
-    setFrequency : (arg0 : number) => void;
+export type ColorObj = {
+    name : string;
+    colorCode : string;
+}
+
+export type ShapeObj = {
+    name : string;
+    shapeElement : ReactElement;
+}
+
+export type TextObj = {
+    name : string;
+    textElement : ReactElement;
 }
 
 export type TrainingModeType = {
-    color : string;
-    shape : ReactElement;
-    text : ReactElement;
+    colorObj : ColorObj;
+    shapeObj : ShapeObj;
+    textObj : TextObj;
     speech : string;
     sfx : string;
 }
@@ -221,7 +229,7 @@ export const VisualAccordionItemsList : AccordionItemContentType[] = [
         title : "Text",
         content : 
             <div className="Settings-Container">
-                <TextInputContainer 
+                <TextInputItem 
                     prompt="Enter Text" 
                     identifier="Text"
                     userSelectionsMapKey="Text"

@@ -13,6 +13,21 @@
     justify-content: center;
 }
 
+.Duration-Frequency-Container {
+    position: absolute;
+    top: var(--padding);
+    left: var(--padding);
+}
+
+.Duration-Frequency-Text {
+    text-align: left;
+
+    font: var(--sectiontitle);
+    font-size: 3.5vh;
+
+    color: var(--primary);
+}
+
 .Exit-Modal-Button {
     position: absolute;
     top: var(--padding);

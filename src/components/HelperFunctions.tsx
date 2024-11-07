@@ -1,5 +1,5 @@
 import { ReactElement, cloneElement } from 'react';
-import { ColorOptionsMap, ShapeOptionsMap } from './Definitions';
+import { ColorObj, ColorOptionsMap, ShapeObj, ShapeOptionsMap, TextObj } from './Definitions';
 
 export function getSecondsFromHHMMSS(value : string) {
     const [ str1, str2, str3 ] = value.split(":");
@@ -76,12 +76,21 @@ export function startWithShapesOrText(userSelectionsMap : Map<string, string[]>)
     }
 }
 
-export function getColor(userSelectionsMap : Map<string, string[]>) {
+export function getNextColorObj(userSelectionsMap : Map<string, string[]>, currentColorName : string | undefined, isUniqueEnabled : boolean) : ColorObj {
     if (!userSelectionsMapHasKey(userSelectionsMap, "Colors")) {
-        return "white";
+        return { 
+            name: "white", 
+            colorCode: "white" 
+        };
     }
 
-    const availableColors = userSelectionsMap.get("Colors");
+    const userSelectedColors = userSelectionsMap.get("Colors");
+    let availableColors = userSelectedColors;
+
+    if (isUniqueEnabled && (currentColorName !== undefined)) {
+        availableColors = userSelectedColors?.filter((colorName) => colorName !== currentColorName);
+    }
+
     const selectedColor = availableColors?.[Math.floor(Math.random() * availableColors.length)];
 
     if (selectedColor === undefined) {
@@ -94,15 +103,27 @@ export function getColor(userSelectionsMap : Map<string, string[]>) {
         throw new Error("Tried to display an invalid color!");
     }
 
-    return displayColor;
+    return { 
+        name: selectedColor, 
+        colorCode: displayColor 
+    };
 }
 
-export function getShape(userSelectionsMap : Map<string, string[]>) {
+export function getNextShapeObj(userSelectionsMap : Map<string, string[]>, currentShapeName : string | undefined, isUniqueEnabled : boolean) : ShapeObj {
     if (!userSelectionsMapHasKey(userSelectionsMap, "Shapes")) {
-        return <></>;
+        return {
+            name: "none", 
+            shapeElement : <></> 
+        };
     }
 
-    const availableShapes = userSelectionsMap.get("Shapes");
+    const userSelectedShapes = userSelectionsMap.get("Shapes");
+    let availableShapes = userSelectedShapes;
+
+    if (isUniqueEnabled && (currentShapeName !== undefined)) {
+        availableShapes = userSelectedShapes?.filter((shapeName) => shapeName !== currentShapeName);
+    }
+
     const selectedShape = availableShapes?.[Math.floor(Math.random() * availableShapes.length)];
 
     if (selectedShape === undefined) {
@@ -117,24 +138,45 @@ export function getShape(userSelectionsMap : Map<string, string[]>) {
 
     const clonedShape = createClonedSVG(displayShape, "100%", "100%");
 
-    return (
-        clonedShape
-    );
-}
-
-export function getText(userSelectionsMap : Map<string, string[]>) {
-    if (!userSelectionsMapHasKey(userSelectionsMap, "Text")) {
-        return <></>;
+    if (clonedShape === undefined) {
+        throw new Error("An invalid clone was created!");
     }
 
-    const availableText = userSelectionsMap.get("Text");
+    return {
+        name: selectedShape,
+        shapeElement: 
+            <div className="Shapes-Text-Div">
+                { clonedShape }
+            </div>
+    };
+}
+
+export function getNextTextObj(userSelectionsMap : Map<string, string[]>, currentText : string | undefined, isUniqueEnabled : boolean) : TextObj {
+    if (!userSelectionsMapHasKey(userSelectionsMap, "Text")) {
+        return { 
+            name: "none", 
+            textElement: <></> 
+        };
+    }
+
+    const userSelectedText = userSelectionsMap.get("Text");
+    let availableText = userSelectedText;
+
+    if (isUniqueEnabled && (currentText !== undefined)) {
+        availableText = userSelectedText?.filter((text) => text !== currentText);
+    }
+
     const displayText = availableText?.[Math.floor(Math.random() * availableText.length)];
 
     if (displayText === undefined) {
         throw new Error("An invalid text was selected!");
     }
 
-    return (
-        displayText
-    );
+    return {
+        name: displayText,
+        textElement: 
+            <div className="Shapes-Text-Div">
+                { displayText }
+            </div>
+    };
 }

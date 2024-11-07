@@ -1,0 +1,24 @@
+.Timings-Container, .Timings-Content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Timings-Container {
+    gap: calc(var(--verticalspacing) * 2);
+}
+
+.Timings-Content {
+    gap: var(--verticalspacing);
+}
+
+.Content-Title {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+
+    font-weight: bold;
+
+    font-size: 20px;
+}
