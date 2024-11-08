@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
 
-# Reaction Cue Trainer
+# Reaction Time Trainer
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -23,7 +23,7 @@
 </details>
 
 ## Description
-<a href="https://github.com/LarryLing/Reaction-Cue-Trainer">
+<a href="https://github.com/LarryLing/Reaction-Time-Trainer">
     <img src="/public/demo.png" alt="Demo">
 </a>
 
@@ -42,11 +42,13 @@
     * Double check to make sure each stimuli is present and adjusted to your preferences.
     * Set how long the training mode will last by entering a time for "Duration".
     * Set how long it will take for a random stimulus to change by entering a time for "Frequency".
+    * Set if you want to prevent immediate repeats of a stimulus.
+    * Set if you want to be able to see the "Time Left" or the "Time Remaining Until Next Stimulus" (THIS IS NOT RECOMMENDED FOR TRAINING MODE)
 4. Once everything is setup, click the "Start" button!
 5. After training mode has been entered, it can exited manually at any time.
 
 ### Important
-Please keep in mind that this version of the Reaction Cue Trainer only allows for one stimulus can change at a time. 
+Please keep in mind that this version of the Reaction Time Trainer only allows for one stimulus can change at a time. 
 The stimulus that changes is determined randomly by the app itself.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -92,4 +94,4 @@ Larry Ling - [@LinkedIn](https://www.linkedin.com/in/larry-ling-student/) - larr
 [Typescript-url]: https://www.typescriptlang.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Issues-url]: https://github.com/LarryLing/Reaction-Cue-Trainer/issues
+[Issues-url]: https://github.com/LarryLing/Reaction-Time-Trainer/issues

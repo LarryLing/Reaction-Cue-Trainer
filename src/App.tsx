@@ -24,7 +24,7 @@ function App() {
 	return (
 		<div className="App">
 			<div className="Website-Header">
-				<span>Reaction Cue Trainer</span>
+				<span>Reaction Time Trainer</span>
 			</div>
 			<div className='Two-Column-Container'>
 				<div className="Column Category-Accordion-Container">
