@@ -40,6 +40,22 @@ export function toHHMMSS(secs : number | undefined) {
         .replace(/^0/, "");
 }
 
+export function getUserSelectionValidity(userSelectionsMap : Map<string, string[]>) {
+    if (userSelectionsMap.size === 0) {
+        return false;
+    }
+
+    const userSelectionMapValues = [...userSelectionsMap.values()];
+
+    for (let i = 0; i < userSelectionMapValues.length; i++) {
+        if (userSelectionMapValues[i].length < 2) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 export function createClonedSVG(svgToClone : ReactElement | undefined, newWidth : number | string, newHeight : number | string) {
     if (svgToClone === undefined) {
         return svgToClone;
@@ -79,7 +95,7 @@ export function startWithShapesOrText(userSelectionsMap : Map<string, string[]>)
 export function getNextColorObj(userSelectionsMap : Map<string, string[]>, currentColorName : string | undefined, isUniqueEnabled : boolean) : ColorObj {
     if (!userSelectionsMapHasKey(userSelectionsMap, "Colors")) {
         return { 
-            name: "white", 
+            name: undefined, 
             colorCode: "white" 
         };
     }
@@ -112,7 +128,7 @@ export function getNextColorObj(userSelectionsMap : Map<string, string[]>, curre
 export function getNextShapeObj(userSelectionsMap : Map<string, string[]>, currentShapeName : string | undefined, isUniqueEnabled : boolean) : ShapeObj {
     if (!userSelectionsMapHasKey(userSelectionsMap, "Shapes")) {
         return {
-            name: "none", 
+            name: undefined, 
             shapeElement : <></> 
         };
     }
@@ -154,7 +170,7 @@ export function getNextShapeObj(userSelectionsMap : Map<string, string[]>, curre
 export function getNextTextObj(userSelectionsMap : Map<string, string[]>, currentText : string | undefined, isUniqueEnabled : boolean) : TextObj {
     if (!userSelectionsMapHasKey(userSelectionsMap, "Text")) {
         return { 
-            name: "none", 
+            name: undefined, 
             textElement: <></> 
         };
     }
