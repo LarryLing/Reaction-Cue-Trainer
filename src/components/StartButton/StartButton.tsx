@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import "./StartButton.css";
 import { WhistleIcon } from "../Icons/Icons";
+import "./StartButton.css";
 
 interface Props {
-    duration : number;
-    frequency : number;
-    isUserSelectionsMapEmpty : boolean;
+    isDurationZero : boolean;
+    isFrequencyZero : boolean;
+    isUserSelectionsMapInvalid : boolean;
     isTrainingModeActive : boolean;
     setIsTrainingModeActive : (arg : boolean) => void;
 }
@@ -14,7 +14,7 @@ export default function StartButton(props : Props) {
     const [ isButtonShaking, setIsButtonShaking ] = useState(false);
 
     const startTraining = () => {
-        if ((props.duration === 0) || (props.frequency === 0) || props.isUserSelectionsMapEmpty) {
+        if (props.isDurationZero || props.isFrequencyZero || props.isUserSelectionsMapInvalid) {
             setIsButtonShaking(true);
             setTimeout(() => setIsButtonShaking(false), 500);
         }

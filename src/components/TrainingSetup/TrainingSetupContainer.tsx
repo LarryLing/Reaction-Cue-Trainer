@@ -64,7 +64,7 @@ export default function TrainingSetupContainer(props : Props) {
                 <CheckboxItem identifier="Show Duration" onChange={ props.setIsDurationVisible } booleanValue={ props.isDurationVisible }/>
                 <CheckboxItem identifier="Show Frequency" onChange={ props.setIsFrequencyVisible } booleanValue={ props.isFrequencyVisible }/>
                 <div className="Heads-Up-Text" style={{ display : (props.duration === 0 || props.frequency === 0) ? "block" : "none" }}>
-                    Make sure your input value(s) is not zero before starting!
+                    Input value(s) for Duration and/or Frequency cannot be zero!
                 </div>
             </div>
         </div>

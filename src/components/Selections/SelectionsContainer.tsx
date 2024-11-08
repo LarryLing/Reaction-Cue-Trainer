@@ -1,3 +1,4 @@
+import { getUserSelectionValidity } from '../HelperFunctions';
 import { ListIcon } from '../Icons/Icons';
 import './SelectionsContainer.css'
 
@@ -26,10 +27,11 @@ export default function SelectionsContainer(props : Props) {
                         </div>
 
     const headsUpText = <div className="Heads-Up-Text">
-                            Make sure you select some cues before starting!
+                            Please select at least 2 cues under any given category!
                         </div>
 
-    const isMapEmpty = props.userSelectionsMap.size === 0;
+    const isMapNotEmpty = props.userSelectionsMap.size !== 0;
+    const isMapInvalid = !getUserSelectionValidity(props.userSelectionsMap);
 
     return (
         <div className="Outline Selections-Container">
@@ -37,9 +39,8 @@ export default function SelectionsContainer(props : Props) {
                 <ListIcon height={ 28 } width={ 28 } fill="none" stroke="var(--primary)"/>
                 <span>Selections</span>
             </div>
-            {
-                isMapEmpty ? headsUpText : cueHTMLList
-            }
+            { isMapNotEmpty && cueHTMLList }
+            { isMapInvalid && headsUpText }
         </div>
     )
 }

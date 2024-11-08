@@ -22,17 +22,17 @@ export type UserSelectionsContextType = {
 }
 
 export type ColorObj = {
-    name : string;
+    name : string | undefined;
     colorCode : string;
 }
 
 export type ShapeObj = {
-    name : string;
+    name : string | undefined;
     shapeElement : ReactElement;
 }
 
 export type TextObj = {
-    name : string;
+    name : string | undefined;
     textElement : ReactElement;
 }
 

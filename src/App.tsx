@@ -7,6 +7,7 @@ import TrainingSetupContainer from './components/TrainingSetup/TrainingSetupCont
 import TrainingModal from './components/TrainingModal/TrainingModal';
 import { UserSelectionsContextType } from './components/Definitions';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getUserSelectionValidity } from './components/HelperFunctions';
 import './App.css';
 
 export const UserSelectionsContext = React.createContext<UserSelectionsContextType | null>(null);
@@ -33,8 +34,8 @@ function App() {
 						<AccordionContainer stimulusCategory={ stimulusCategory }/>
 					</UserSelectionsContext.Provider>
 				</div>
-				<div className="Column Selections-Timings-Start-Container">
-					<SelectionsContainer userSelectionsMap={ userSelectionsMap }/>
+				<div className="Column Selections-Setup-Start-Container">
+					<SelectionsContainer userSelectionsMap={ userSelectionsMap } />
                     <TrainingSetupContainer 
                         duration={ duration } setDuration={ setDuration }
                         frequency={ frequency } setFrequency={ setFrequency }
@@ -42,13 +43,13 @@ function App() {
                         isFrequencyVisible={ isFrequencyVisible } setIsFrequencyVisible={ setIsFrequencyVisible }
                         isUniqueEnabled={ isUniqueEnabled } setIsUniqueEnabled={ setIsUniqueEnabled }/>
 					<StartButton 
-                        duration={ duration } 
-                        frequency={ frequency } 
-                        isUserSelectionsMapEmpty={ userSelectionsMap.size === 0 } 
-                        isTrainingModeActive={ isTrainingModeActive } 
+                        isDurationZero={ duration === 0 } 
+                        isFrequencyZero={ frequency === 0}
+                        isUserSelectionsMapInvalid={ !getUserSelectionValidity(userSelectionsMap) }
+                        isTrainingModeActive={ isTrainingModeActive }
                         setIsTrainingModeActive={ setIsTrainingModeActive }/>
                     <p className="Heads-Up-Text">
-                        For the optimal viewing experience on mobile devices, please use Landscape mode.
+                        For the optimal viewing experience on mobile devices, please use Landscape mode while in Training Mode.
                     </p>
 				</div>
 			</div>
