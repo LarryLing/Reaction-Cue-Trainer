@@ -52,8 +52,7 @@ The stimulus that changes is determined randomly by the app itself.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Future Developments
-- Implement "Training Mode" for when user clicks the "Start" button
-- Implement Audio stimuli
+- Implement Audio stimulus
 - Implement text input validation
 
 Click [here][Issues-url] to see the list of Issues!
@@ -64,9 +63,9 @@ Since this personal project marks the beginning of my journey in web development
 If you have a suggestion that would make this web app better, feel free to fork the repo and create a pull request. You can also open an issue with the tag "suggestion". Don't forget to give the project a star! Thank you!
 
 1. Fork the Project
-2. Create your Suggestion Branch (`git checkout -b suggestions/SuggestedFeature`)
-3. Commit your Changes (`git commit -m 'Add some SuggestedFeature'`)
-4. Push to the Branch (`git push origin suggestions/SuggestedFeature`)
+2. Create your Suggestion Branch (`git checkout -b feature/SuggestedFeature`)
+3. Commit your Changes (`git commit -m 'Added some SuggestedFeature'`)
+4. Push to the Branch (`git push origin feature/SuggestedFeature`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

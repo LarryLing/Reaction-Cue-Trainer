@@ -233,7 +233,7 @@ export const VisualAccordionItemsList : AccordionItemContentType[] = [
                     prompt="Enter Text" 
                     identifier="Text"
                     userSelectionsMapKey="Text"
-                    placeholderText="ie: example, text, 1, 2, 3 - 5"/>
+                    placeholderText="ie: example, text, 1, 2, 3, 4"/>
             </div>
     },
 ];
