@@ -1,4 +1,4 @@
-.Text-Input-Container {
+.Text-Input-Item {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,6 +17,7 @@
     padding-bottom: 100px;
 
     font: var(--settingstext);
+    font-size: 16px;
 
     color: var(--secondary);
 }

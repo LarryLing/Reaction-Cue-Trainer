@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from 'react'
 import { UserSelectionsContext } from '../../App';
 import './Settings.css'
-import './TextInputContainer.css'
+import './TextInputItem.css'
 
 interface Props {
 	prompt : string;
@@ -10,7 +10,7 @@ interface Props {
 	placeholderText : string;
 }
 
-export default function TextInputContainer(props : Props) {
+export default function TextInputItem(props : Props) {
 	const userSelectionsProvider = useContext(UserSelectionsContext);
 
 	const [ inputValue, setInputValue ] = useState(userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey) ? userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey)?.join(", ") : "");
@@ -36,14 +36,12 @@ export default function TextInputContainer(props : Props) {
 			userSelectionsProvider?.setUserSelectionsMap(updatedUserSelectionsMap);
 		}
 		else {
-			userSelectionsProvider?.setUserSelectionsMap(
-				new Map<string, string[]>(userSelectionsProvider.userSelectionsMap).set(props.userSelectionsMapKey, formattedInputValue.split(","))
-			);
+			userSelectionsProvider?.setUserSelectionsMap(new Map<string, string[]>(userSelectionsProvider.userSelectionsMap).set(props.userSelectionsMapKey, formattedInputValue.split(",")));
 		}
 	}
 
 	return (
-		<div className="Text-Input-Container">
+		<div className="Text-Input-Item">
 			<label className="Prompt" htmlFor={ props.identifier }>
 				{ props.prompt }
 			</label>

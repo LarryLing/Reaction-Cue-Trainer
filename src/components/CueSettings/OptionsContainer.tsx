@@ -1,14 +1,31 @@
 import OptionItem from './OptionItem';
-import { Option } from '../Definitions';
+import { OptionItemRenderInfoType } from '../Definitions';
+import { createClonedSVG } from '../HelperFunctions';
+import { uid } from 'uid';
 import './OptionsContainer.css';
 import './Settings.css'
 
 interface Props {
     prompt : string;
-    optionsList : Option[];
+    optionMap : Map<string, OptionItemRenderInfoType>;
 }
 
+type OptionsKVP = { id : string, optionName : string } & OptionItemRenderInfoType
+
 export default function OptionsContainer(props : Props) {
+    const optionMapKVPs : OptionsKVP[] = [];
+
+    props.optionMap.forEach((value, key) => optionMapKVPs.push(
+        {
+            id : uid(),
+            optionName : key,
+            backgroundColor : value.backgroundColor,
+            outlineColor : value.outlineColor,
+            userSelectionsMapKey : value.userSelectionsMapKey,
+            content : value.content,
+        }
+    ))
+
     return (
 		<div className="Options-Container">
             <div className="Prompt">
@@ -16,14 +33,14 @@ export default function OptionsContainer(props : Props) {
             </div>
             <div className="Options-List">
                 {
-                    props.optionsList.map( (item, id) => (
-                        <OptionItem 
-                            id={ id }
-                            optionName={ item.optionName }	
-                            backgroundColor={ item.backgroundColor }
-                            outlineColor={ item.outlineColor }
-                            userSelectionsMapKey={ item.userSelectionsMapKey }
-                            content={ item.content }/>
+                    optionMapKVPs.map((optionMapKVP) => (
+                        <OptionItem
+                            key={ optionMapKVP.id }
+                            optionName={ optionMapKVP.optionName }
+                            backgroundColor={ optionMapKVP.backgroundColor }
+                            outlineColor={ optionMapKVP.outlineColor }
+                            userSelectionsMapKey={ optionMapKVP.userSelectionsMapKey }
+                            content={ createClonedSVG(optionMapKVP.content, "100%", "100%") }/>
                     ))
                 }
             </div>

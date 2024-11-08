@@ -1,0 +1,11 @@
+.Checkbox-Subcontainer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: var(--verticalspacing);
+}
+
+.Checkbox:checked {
+    background-color: var(--primary);
+}

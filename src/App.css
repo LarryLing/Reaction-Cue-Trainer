@@ -102,3 +102,13 @@
 .Selections-Timings-Start-Container {
   	flex: 1;
 }
+
+.Heads-Up-Text {
+    margin: 0px;
+    padding: 0px;
+
+    font: var(--warningtext);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--secondary);
+}

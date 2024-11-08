@@ -1,0 +1,56 @@
+.Modal-Container {
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Duration-Frequency-Container {
+    position: absolute;
+    top: var(--padding);
+    left: var(--padding);
+}
+
+.Duration-Frequency-Text {
+    text-align: left;
+
+    font: var(--sectiontitle);
+    font-size: 3.5vh;
+
+    color: var(--primary);
+}
+
+.Exit-Modal-Button {
+    position: absolute;
+    top: var(--padding);
+    right: var(--padding);
+
+    cursor: pointer;
+
+    transition: all 0.2s;
+}
+
+.Exit-Modal-Button:hover {
+    transform: scale(1.015);
+}
+
+.Shapes-Text-Div {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25vmin;
+    font-weight: bold;
+    color: var(--primary);
+}
