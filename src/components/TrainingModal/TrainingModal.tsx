@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TrainingModeType } from '../Definitions';
 import { CrossIcon } from '../Icons/Icons';
-import { getNextColorObj, getNextShapeObj, getNextTextObj, startWithShapesOrText } from '../HelperFunctions';
+import { getNextColorObj, getNextSFXObj, getNextShapeObj, getNextTextObj, startWithShapesOrText } from '../HelperFunctions';
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { toHHMMSS } from '../HelperFunctions';
 import './TrainingModal.css';
@@ -28,8 +28,7 @@ export default function TrainingModal(props : Props) {
             colorObj : getNextColorObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
             shapeObj : getNextShapeObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
             textObj :  getNextTextObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
-            speech : "",
-            sfx : "",
+            sfx : getNextSFXObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
         }
     )
 
@@ -75,7 +74,6 @@ export default function TrainingModal(props : Props) {
                     colorObj : nextColorObj,
                     shapeObj : trainingModeState.shapeObj,
                     textObj : trainingModeState.textObj,
-                    speech : trainingModeState.speech,
                     sfx : trainingModeState.sfx,
                 })
                 break;
@@ -88,7 +86,6 @@ export default function TrainingModal(props : Props) {
                     colorObj : trainingModeState.colorObj,
                     shapeObj : nextShapeObj,
                     textObj : trainingModeState.textObj,
-                    speech : trainingModeState.speech,
                     sfx : trainingModeState.sfx,
                 })
                 break;
@@ -101,8 +98,19 @@ export default function TrainingModal(props : Props) {
                     colorObj : trainingModeState.colorObj,
                     shapeObj : trainingModeState.shapeObj,
                     textObj : nextTextObj,
-                    speech : trainingModeState.speech,
                     sfx : trainingModeState.sfx,
+                })
+                break;
+
+            case "Sound Effects":
+                const nextSFXObj = getNextSFXObj(props.userSelectionsMap, trainingModeState.textObj.name, props.isUniqueEnabled)
+
+                setDisplayShapesOrText("Text");
+                setTrainingModeState({
+                    colorObj : trainingModeState.colorObj,
+                    shapeObj : trainingModeState.shapeObj,
+                    textObj : trainingModeState.textObj,
+                    sfx : nextSFXObj,
                 })
                 break;
         }      

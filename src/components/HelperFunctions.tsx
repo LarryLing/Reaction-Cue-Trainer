@@ -1,5 +1,5 @@
 import { ReactElement, cloneElement } from 'react';
-import { ColorObj, ColorOptionsMap, ShapeObj, ShapeOptionsMap, TextObj } from './Definitions';
+import { ColorObj, ColorOptionsMap, SFXObj, ShapeObj, ShapeOptionsMap, TextObj } from './Definitions';
 
 export function getSecondsFromHHMMSS(value : string) {
     const [ str1, str2, str3 ] = value.split(":");
@@ -195,4 +195,11 @@ export function getNextTextObj(userSelectionsMap : Map<string, string[]>, curren
                 { displayText }
             </div>
     };
+}
+
+export function getNextSFXObj(userSelectionsMap : Map<string, string[]>, currentAudioFileName : string | undefined, isUniqueEnabled : boolean) : SFXObj {
+    return {
+        name : undefined, 
+        audioFileName : ""
+    }
 }

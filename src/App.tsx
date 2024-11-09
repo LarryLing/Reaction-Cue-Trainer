@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import StartButton from './components/StartButton/StartButton';
 import AccordionContainer from './components/Accordion/AccordionContainer';
 import SelectionsContainer from './components/Selections/SelectionsContainer';
-import CategoriesContainer from './components/CategorySelect/CategoriesContainer';
 import TrainingSetupContainer from './components/TrainingSetup/TrainingSetupContainer';
 import TrainingModal from './components/TrainingModal/TrainingModal';
 import { UserSelectionsContextType } from './components/Definitions';
@@ -13,7 +12,6 @@ import './App.css';
 export const UserSelectionsContext = React.createContext<UserSelectionsContextType | null>(null);
 
 function App() {
-	const [ stimulusCategory, setStimulusCategory ] = useState("Visual");
 	const [ userSelectionsMap, setUserSelectionsMap ] = useState(new Map<string, string[]>());
 	const [ duration, setDuration ] = useState(300);
 	const [ frequency, setFrequency ] = useState(5);
@@ -29,9 +27,8 @@ function App() {
 			</div>
 			<div className='Two-Column-Container'>
 				<div className="Column Category-Accordion-Container">
-					<CategoriesContainer stimulusCategory={ stimulusCategory } setStimulusCategory={ setStimulusCategory }/>
 					<UserSelectionsContext.Provider value={{ userSelectionsMap, setUserSelectionsMap }}>
-						<AccordionContainer stimulusCategory={ stimulusCategory }/>
+						<AccordionContainer/>
 					</UserSelectionsContext.Provider>
 				</div>
 				<div className="Column Selections-Setup-Start-Container">

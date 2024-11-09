@@ -7,6 +7,7 @@ import './Settings.css'
 
 interface Props {
     prompt : string;
+    userSelectionsMapKey : string;
     optionMap : Map<string, OptionItemRenderInfoType>;
 }
 
@@ -21,7 +22,6 @@ export default function OptionsContainer(props : Props) {
             optionName : key,
             backgroundColor : value.backgroundColor,
             outlineColor : value.outlineColor,
-            userSelectionsMapKey : value.userSelectionsMapKey,
             content : value.content,
         }
     ))
@@ -39,7 +39,7 @@ export default function OptionsContainer(props : Props) {
                             optionName={ optionMapKVP.optionName }
                             backgroundColor={ optionMapKVP.backgroundColor }
                             outlineColor={ optionMapKVP.outlineColor }
-                            userSelectionsMapKey={ optionMapKVP.userSelectionsMapKey }
+                            userSelectionsMapKey={ props.userSelectionsMapKey }
                             content={ createClonedSVG(optionMapKVP.content, "100%", "100%") }/>
                     ))
                 }

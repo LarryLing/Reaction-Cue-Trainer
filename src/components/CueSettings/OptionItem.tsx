@@ -17,7 +17,7 @@ export default function OptionItem(props : Props) {
     const userSelectionsMap : Map<string, string[]> | undefined = userSelectionsProvider?.userSelectionsMap;
     const indexedUserSelections : string[] | undefined = userSelectionsMap?.get(props.userSelectionsMapKey);
 
-    const determineIfToggled = () => {
+    const determineIfPreviouslyToggled = () => {
         if (!indexedUserSelections) {
             return false;
         }
@@ -25,7 +25,7 @@ export default function OptionItem(props : Props) {
         return indexedUserSelections.includes(props.optionName);
     }
 
-    const [ isOptionItemToggled, setIsOptionItemToggled ] = useState(determineIfToggled);
+    const [ isOptionItemToggled, setIsOptionItemToggled ] = useState(determineIfPreviouslyToggled);
 
     const updateUserSelectionsMap = () => {
         if (!indexedUserSelections) {
@@ -60,10 +60,10 @@ export default function OptionItem(props : Props) {
         <div
             key={ props.key }
             className="Option-Item" 
-            style={ {
+            style={{
                 backgroundColor: `${props.backgroundColor}`, 
                 borderColor: `${props.outlineColor}`, 
-                borderWidth: isOptionItemToggled ? "var(--outlinewidth)" : "calc(var(--outlinewidth) * 0.5)"} }
+                borderWidth: isOptionItemToggled ? "var(--outlinewidth)" : "calc(var(--outlinewidth) * 0.5)" }}
             onClick={ updateUserSelectionsMap }>
                 { props.content }
         </div>

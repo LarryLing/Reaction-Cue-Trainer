@@ -34,18 +34,17 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
-1. At the top of the screen, you can select the category (Visual/Audio) you want to view.
-2. Each category contains unique stimuli that you can add to your list of selections.
-    * For text inputs, make sure that each word is separated by a ", ".
-    * For option inputs, click on the item(s) that you want to add.
-3. On the right side of the screen, you can verify your training setup.
-    * Double check to make sure each stimuli is present and adjusted to your preferences.
+1. Click on an category to reveal stimuli that you want to add to your list of selections.
+    * For text-based inputs, make sure that each word is separated by a ", ".
+    * For option-based inputs, click on the item(s) that you want to add.
+2. On the right side of the screen, you can verify your training setup.
+    * Double check to make sure each of your selected stimuli is present.
     * Set how long the training mode will last by entering a time for "Duration".
     * Set how long it will take for a random stimulus to change by entering a time for "Frequency".
     * Set if you want to prevent immediate repeats of a stimulus.
     * Set if you want to be able to see the "Time Left" or the "Time Remaining Until Next Stimulus" (THIS IS NOT RECOMMENDED FOR TRAINING MODE)
-4. Once everything is setup, click the "Start" button!
-5. After training mode has been entered, it can exited manually at any time.
+3. Once everything is setup, click the "Start" button!
+4. After training mode has been entered, it can exited manually at any time.
 
 ### Important
 Please keep in mind that this version of the Reaction Time Trainer only allows for one stimulus can change at a time. 
