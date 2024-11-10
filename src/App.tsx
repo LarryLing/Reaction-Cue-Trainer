@@ -26,7 +26,7 @@ function App() {
 				<span>Reaction Time Trainer</span>
 			</div>
 			<div className='Two-Column-Container'>
-				<div className="Column Category-Accordion-Container">
+				<div className="Column Accordion-Container">
 					<UserSelectionsContext.Provider value={{ userSelectionsMap, setUserSelectionsMap }}>
 						<AccordionContainer/>
 					</UserSelectionsContext.Provider>

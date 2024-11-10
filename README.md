@@ -85,6 +85,7 @@ Larry Ling - [@LinkedIn](https://www.linkedin.com/in/larry-ling-student/) - larr
 * [SVGRepo](https://www.svgrepo.com/)
 * [CSS-Tricks' Flexbox Layout Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 * [CSS-Tricks' Grid Layout Guide](https://css-tricks.com/snippets/css/complete-guide-grid/)
+* [Narakeet](https://www.narakeet.com/create/text-to-wav.html)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

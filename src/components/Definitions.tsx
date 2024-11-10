@@ -1,8 +1,7 @@
 import { ReactElement }  from 'react'
 import { Circle, Ellipse, Heart, Hexagon, Octagon, Pentagon, Rectangle, Square, Star } from './Icons/Shapes';
-import OptionsContainer from './CueSettings/OptionsContainer';
-import TextInputItem from './CueSettings/TextInputItem';
-// import { SpeakerIcon } from './Icons/Icons';
+import StimulusOptionsContainer from './StimulusSettings/StimulusOptionsContainer';
+import StimulusTextInputContainer from './StimulusSettings/StimulusTextInputContainer';
 
 export type AccordionItemContentType = {
     id : number;
@@ -270,7 +269,7 @@ export const AccordionItemsList : AccordionItemContentType[] = [
         title : "Colors",
         content : 		
             <div className="Settings-Container">
-                <OptionsContainer
+                <StimulusOptionsContainer
                     prompt="Select Colors"
                     userSelectionsMapKey="Colors"
                     optionMap={ ColorOptionsMap }/>
@@ -281,7 +280,7 @@ export const AccordionItemsList : AccordionItemContentType[] = [
         title : "Shapes",
         content : 
             <div className="Settings-Container">
-                <OptionsContainer
+                <StimulusOptionsContainer
                     prompt="Select Shapes"
                     userSelectionsMapKey="Shapes"
                     optionMap={ ShapeOptionsMap }/>
@@ -292,7 +291,7 @@ export const AccordionItemsList : AccordionItemContentType[] = [
         title : "Text",
         content : 
             <div className="Settings-Container">
-                <TextInputItem 
+                <StimulusTextInputContainer 
                     prompt="Enter Text" 
                     identifier="Text"
                     userSelectionsMapKey="Text"
@@ -304,7 +303,7 @@ export const AccordionItemsList : AccordionItemContentType[] = [
         title : "Sound Effects",
         content :
             <div className="Settings-Container">
-                <OptionsContainer
+                <StimulusOptionsContainer
                     prompt="Select Sound Effects"
                     userSelectionsMapKey="Sound Effects"
                     optionMap={ SFXOptionsMap }/>

@@ -95,7 +95,7 @@
   	gap: var(--outlinespacing);
 }
 
-.Category-Accordion-Container {
+.Accordion-Container {
   	flex: 3;
 }
 

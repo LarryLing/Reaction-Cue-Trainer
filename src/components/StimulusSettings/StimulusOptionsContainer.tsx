@@ -1,8 +1,8 @@
-import OptionItem from './OptionItem';
+import StimulusOptionItem from './StimulusOptionItem';
 import { OptionItemRenderInfoType } from '../Definitions';
 import { createClonedSVG } from '../HelperFunctions';
 import { uid } from 'uid';
-import './OptionsContainer.css';
+import './StimulusOptionsContainer.css';
 import './Settings.css'
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 
 type OptionsKVP = { id : string, optionName : string } & OptionItemRenderInfoType
 
-export default function OptionsContainer(props : Props) {
+export default function StimulusOptionsContainer(props : Props) {
     const optionMapKVPs : OptionsKVP[] = [];
 
     props.optionMap.forEach((value, key) => optionMapKVPs.push(
@@ -34,7 +34,7 @@ export default function OptionsContainer(props : Props) {
             <div className="Options-List">
                 {
                     optionMapKVPs.map((optionMapKVP) => (
-                        <OptionItem
+                        <StimulusOptionItem
                             key={ optionMapKVP.id }
                             optionName={ optionMapKVP.optionName }
                             backgroundColor={ optionMapKVP.backgroundColor }
