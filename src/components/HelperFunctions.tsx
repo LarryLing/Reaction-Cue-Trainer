@@ -198,8 +198,28 @@ export function getNextTextObj(userSelectionsMap : Map<string, string[]>, curren
 }
 
 export function getNextSFXObj(userSelectionsMap : Map<string, string[]>, currentAudioFileName : string | undefined, isUniqueEnabled : boolean) : SFXObj {
+    if (!userSelectionsMapHasKey(userSelectionsMap, "Sound Effects")) {
+        return { 
+            name: undefined, 
+            audioFileName: undefined
+        };
+    }
+
+    const userSelectedSounds = userSelectionsMap.get("Sound Effects");
+    let availableSounds = userSelectedSounds;
+
+    if (isUniqueEnabled && (currentAudioFileName !== undefined)) {
+        availableSounds = userSelectedSounds?.filter((filename) => filename !== currentAudioFileName);
+    }
+
+    const selectedAudioFile = availableSounds?.[Math.floor(Math.random() * availableSounds.length)];
+
+    if (selectedAudioFile === undefined) {
+        throw new Error("An invalid audio file was selected!");
+    }
+
     return {
-        name : undefined, 
-        audioFileName : ""
+        name : selectedAudioFile, 
+        audioFileName : selectedAudioFile
     }
 }

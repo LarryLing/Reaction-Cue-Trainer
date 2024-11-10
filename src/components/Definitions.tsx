@@ -2,7 +2,7 @@ import { ReactElement }  from 'react'
 import { Circle, Ellipse, Heart, Hexagon, Octagon, Pentagon, Rectangle, Square, Star } from './Icons/Shapes';
 import OptionsContainer from './CueSettings/OptionsContainer';
 import TextInputItem from './CueSettings/TextInputItem';
-import { SpeakerIcon } from './Icons/Icons';
+// import { SpeakerIcon } from './Icons/Icons';
 
 export type AccordionItemContentType = {
     id : number;
@@ -38,14 +38,14 @@ export type TextObj = {
 
 export type SFXObj = {
     name : string | undefined;
-    audioFileName : string;
+    audioFileName : string | undefined;
 }
 
 export type TrainingModeType = {
     colorObj : ColorObj;
     shapeObj : ShapeObj;
     textObj : TextObj;
-    sfx : SFXObj;
+    sfxObj : SFXObj;
 }
 
 export const ColorOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([   
@@ -191,75 +191,75 @@ export const ShapeOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
 
 export const SFXOptionsMap : Map<string, OptionItemRenderInfoType> = new Map([
     [
-        "SFX 1",
+        "Up",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Up</div>
         },
     ],
     [
-        "SFX 2",
+        "Down",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Down</div>
         },
     ],
     [
-        "SFX 3",
+        "Left",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Left</div>
         },
     ],
     [
-        "SFX 4",
+        "Right",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Right</div>
         },
     ],
     [
-        "SFX 5",
+        "Forward",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Forward</div>
         },
     ],
     [
-        "SFX 6",
+        "Backward",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Backward</div>
         },
     ],
     [
-        "SFX 7",
+        "Turn",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Turn</div>
         },
     ],
     [
-        "SFX 8",
+        "Beep",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Beep</div>
         },
     ],
     [
-        "SFX 9",
+        "Double Beep",
         {
             backgroundColor : "white",
             outlineColor : "var(--primary)",
-            content : <SpeakerIcon fill="var(--primary)"/>,
+            content : <div style={{ fontWeight : "bold", color : "var(--primary)" }}>Double Beep</div>
         },
     ],
 ]);

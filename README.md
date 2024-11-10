@@ -42,7 +42,7 @@
     * Set how long the training mode will last by entering a time for "Duration".
     * Set how long it will take for a random stimulus to change by entering a time for "Frequency".
     * Set if you want to prevent immediate repeats of a stimulus.
-    * Set if you want to be able to see the "Time Left" or the "Time Remaining Until Next Stimulus" (THIS IS NOT RECOMMENDED FOR TRAINING MODE)
+    * Set if you want to be able to see the "Time Left" or the "Time Remaining Until Next Stimulus" **(THIS IS NOT RECOMMENDED FOR TRAINING MODE)**
 3. Once everything is setup, click the "Start" button!
 4. After training mode has been entered, it can exited manually at any time.
 

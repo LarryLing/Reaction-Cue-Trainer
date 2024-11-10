@@ -6,6 +6,8 @@
     transform: scale(1);
 
     box-shadow: var(--shadow);
+
+    overflow: hidden;
 }
 
 .Option-Item:hover {
