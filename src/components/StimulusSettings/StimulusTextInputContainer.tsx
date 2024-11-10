@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from 'react'
 import { UserSelectionsContext } from '../../App';
 import './Settings.css'
-import './TextInputItem.css'
+import './StimulusTextInputContainer.css'
 
 interface Props {
 	prompt : string;
@@ -10,7 +10,7 @@ interface Props {
 	placeholderText : string;
 }
 
-export default function TextInputItem(props : Props) {
+export default function StimulusTextInputContainer(props : Props) {
 	const userSelectionsProvider = useContext(UserSelectionsContext);
 
 	const [ inputValue, setInputValue ] = useState(userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey) ? userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey)?.join(", ") : "");
@@ -41,12 +41,12 @@ export default function TextInputItem(props : Props) {
 	}
 
 	return (
-		<div className="Text-Input-Item">
+		<div className="Text-Input-Container">
 			<label className="Prompt" htmlFor={ props.identifier }>
 				{ props.prompt }
 			</label>
 			<input
-				className="Text-Input"
+				className="Text-Input-Box"
 				type="text" 
 				id={ props.identifier }
 				name={ props.identifier }

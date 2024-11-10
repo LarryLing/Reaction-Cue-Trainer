@@ -1,23 +1,13 @@
 import AccordionItem from './AccordionItem';
-import { VisualAccordionItemsList, AudioAccordionItemsList } from '../Definitions';
+import { AccordionItemsList } from '../Definitions';
 import './AccordionContainer.css';
 
-interface Props {
-    stimulusCategory : string
-}
-
-export default function AccordionContainer(props : Props) {
-    var accordionItemsList = VisualAccordionItemsList;
-
-    if (props.stimulusCategory === "Audio") {
-        accordionItemsList = AudioAccordionItemsList;
-    }
-
+export default function AccordionContainer() {
     return (
         <div className="Outline">
-            <div key={ props.stimulusCategory } className="Accordion-List">
+            <div className="Accordion-List">
                 {
-                    accordionItemsList.map( (item, id) =>
+                    AccordionItemsList.map( (item, id) =>
                         <div key={ id }>
                             <AccordionItem id={ item.id } title={ item.title } content={ item.content }/>
                         </div>

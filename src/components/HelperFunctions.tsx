@@ -1,6 +1,9 @@
 import { ReactElement, cloneElement } from 'react';
-import { ColorObj, ColorOptionsMap, ShapeObj, ShapeOptionsMap, TextObj } from './Definitions';
+import { ColorObj, ColorOptionsMap, SFXObj, ShapeObj, ShapeOptionsMap, TextObj } from './Definitions';
 
+//
+// Convert HH:MM:SS format to a total number of seconds.
+//
 export function getSecondsFromHHMMSS(value : string) {
     const [ str1, str2, str3 ] = value.split(":");
 
@@ -23,6 +26,9 @@ export function getSecondsFromHHMMSS(value : string) {
     return 0;
 }
 
+//
+// Convert total number of seconds to HH:MM:SS format.
+//
 export function toHHMMSS(secs : number | undefined) {
     if (secs == undefined) {
         throw Error("Input value is undefined!");
@@ -40,6 +46,9 @@ export function toHHMMSS(secs : number | undefined) {
         .replace(/^0/, "");
 }
 
+//
+// Determine if we have a valid userSelectionsMap before starting training mode. A userSelectionsMap is valid if a stimulus category has at least two stimuli selected under it.
+//
 export function getUserSelectionValidity(userSelectionsMap : Map<string, string[]>) {
     if (userSelectionsMap.size === 0) {
         return false;
@@ -56,6 +65,9 @@ export function getUserSelectionValidity(userSelectionsMap : Map<string, string[
     return true;
 }
 
+//
+// Creates a clone of an SVG Element with a specified width and height.
+//
 export function createClonedSVG(svgToClone : ReactElement | undefined, newWidth : number | string, newHeight : number | string) {
     if (svgToClone === undefined) {
         return svgToClone;
@@ -74,6 +86,9 @@ export function userSelectionsMapHasKey(userSelectionsMap : Map<string, string[]
     return mapKeys.includes(mapKey);
 }
 
+//
+// Helps the training modal choose between first displaying shapes or text upon entering training mode.
+//
 export function startWithShapesOrText(userSelectionsMap : Map<string, string[]>) {
     const userSelectedShapes = userSelectionsMapHasKey(userSelectionsMap, "Shapes");
     const userSelectedText = userSelectionsMapHasKey(userSelectionsMap, "Text")
@@ -195,4 +210,31 @@ export function getNextTextObj(userSelectionsMap : Map<string, string[]>, curren
                 { displayText }
             </div>
     };
+}
+
+export function getNextSFXObj(userSelectionsMap : Map<string, string[]>, currentAudioFileName : string | undefined, isUniqueEnabled : boolean) : SFXObj {
+    if (!userSelectionsMapHasKey(userSelectionsMap, "Sound Effects")) {
+        return { 
+            name: undefined, 
+            audioFileName: undefined
+        };
+    }
+
+    const userSelectedSounds = userSelectionsMap.get("Sound Effects");
+    let availableSounds = userSelectedSounds;
+
+    if (isUniqueEnabled && (currentAudioFileName !== undefined)) {
+        availableSounds = userSelectedSounds?.filter((filename) => filename !== currentAudioFileName);
+    }
+
+    const selectedAudioFile = availableSounds?.[Math.floor(Math.random() * availableSounds.length)];
+
+    if (selectedAudioFile === undefined) {
+        throw new Error("An invalid audio file was selected!");
+    }
+
+    return {
+        name : selectedAudioFile, 
+        audioFileName : `${ selectedAudioFile }.wav`
+    }
 }

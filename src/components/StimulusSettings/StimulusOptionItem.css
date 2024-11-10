@@ -1,4 +1,4 @@
-.Option-Item {
+.Stimulus-Option-Item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,16 +6,18 @@
     transform: scale(1);
 
     box-shadow: var(--shadow);
+
+    overflow: hidden;
 }
 
-.Option-Item:hover {
+.Stimulus-Option-Item:hover {
     cursor: pointer;
 
     transform: scale(1.015);
     box-shadow: var(--liftedshadow);
 }
 
-.Option-Item:active {
+.Stimulus-Option-Item:active {
     transform: scale(1);
     box-shadow: var(--shadow);
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TrainingModeType } from '../Definitions';
 import { CrossIcon } from '../Icons/Icons';
-import { getNextColorObj, getNextShapeObj, getNextTextObj, startWithShapesOrText } from '../HelperFunctions';
+import { getNextColorObj, getNextSFXObj, getNextShapeObj, getNextTextObj, startWithShapesOrText } from '../HelperFunctions';
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { toHHMMSS } from '../HelperFunctions';
 import './TrainingModal.css';
@@ -28,8 +28,7 @@ export default function TrainingModal(props : Props) {
             colorObj : getNextColorObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
             shapeObj : getNextShapeObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
             textObj :  getNextTextObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
-            speech : "",
-            sfx : "",
+            sfxObj : getNextSFXObj(props.userSelectionsMap, undefined, props.isUniqueEnabled),
         }
     )
 
@@ -40,9 +39,9 @@ export default function TrainingModal(props : Props) {
         }
 
         if (timeUntilNextStimulus === 0) {
-            const nextStimulus = getNextStimulus();
+            const nextStimulusCategory = getNextStimulusCategory();
 
-            updateTrainingModeState(nextStimulus);
+            updateTrainingModeState(nextStimulusCategory);
 
             setTimeUntilNextStimulus(props.frequency);
         }
@@ -55,19 +54,19 @@ export default function TrainingModal(props : Props) {
         return () => clearInterval(interval);
     }, [timeRemaining, timeUntilNextStimulus]);
 
-    const getNextStimulus = () => {
-        const stimulusList = [...props.userSelectionsMap.keys()];
-        const nextStimulus = stimulusList[Math.floor(Math.random() * stimulusList.length)];
+    const getNextStimulusCategory = () => {
+        const stimulusCategoryList = [...props.userSelectionsMap.keys()];
+        const nextStimulusCategory = stimulusCategoryList[Math.floor(Math.random() * stimulusCategoryList.length)];
 
-        return nextStimulus;
+        return nextStimulusCategory;
     }
 
-    const updateTrainingModeState = (nextStimulus : string) => {
-        if (nextStimulus === undefined) {
-            throw new Error("An invalid stimulus group name was randomly selected!");
+    const updateTrainingModeState = (nextStimulusCategory : string) => {
+        if (nextStimulusCategory === undefined) {
+            throw new Error("An invalid stimulus category was selected!");
         }
 
-        switch (nextStimulus) {
+        switch (nextStimulusCategory) {
             case "Colors":
                 const nextColorObj = getNextColorObj(props.userSelectionsMap, trainingModeState.colorObj.name, props.isUniqueEnabled);
 
@@ -75,9 +74,8 @@ export default function TrainingModal(props : Props) {
                     colorObj : nextColorObj,
                     shapeObj : trainingModeState.shapeObj,
                     textObj : trainingModeState.textObj,
-                    speech : trainingModeState.speech,
-                    sfx : trainingModeState.sfx,
-                })
+                    sfxObj : trainingModeState.sfxObj,
+                });
                 break;
 
             case "Shapes":
@@ -88,9 +86,8 @@ export default function TrainingModal(props : Props) {
                     colorObj : trainingModeState.colorObj,
                     shapeObj : nextShapeObj,
                     textObj : trainingModeState.textObj,
-                    speech : trainingModeState.speech,
-                    sfx : trainingModeState.sfx,
-                })
+                    sfxObj : trainingModeState.sfxObj,
+                });
                 break;
 
             case "Text":
@@ -101,9 +98,22 @@ export default function TrainingModal(props : Props) {
                     colorObj : trainingModeState.colorObj,
                     shapeObj : trainingModeState.shapeObj,
                     textObj : nextTextObj,
-                    speech : trainingModeState.speech,
-                    sfx : trainingModeState.sfx,
-                })
+                    sfxObj : trainingModeState.sfxObj,
+                });
+                break;
+
+            case "Sound Effects":
+                const nextSFXObj = getNextSFXObj(props.userSelectionsMap, trainingModeState.sfxObj.name, props.isUniqueEnabled)
+
+                setTrainingModeState({
+                    colorObj : trainingModeState.colorObj,
+                    shapeObj : trainingModeState.shapeObj,
+                    textObj : trainingModeState.textObj,
+                    sfxObj : nextSFXObj,
+                });
+
+                new Audio(trainingModeState.sfxObj.audioFileName).play();
+                
                 break;
         }      
     }

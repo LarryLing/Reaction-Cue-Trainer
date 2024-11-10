@@ -1,4 +1,4 @@
-.Text-Input-Item {
+.Text-Input-Container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.Text-Input {
+.Text-Input-Box {
     border-radius: var(--radius);
     border-color: var(--secondary);
 
@@ -22,11 +22,11 @@
     color: var(--secondary);
 }
 
-.Text-Input::placeholder {
+.Text-Input-Box::placeholder {
     font-style: italic;
 }
 
-.Text-Input:focus::placeholder {
+.Text-Input-Box:focus::placeholder {
     color: transparent;
     border-color: var(--primary)
 }

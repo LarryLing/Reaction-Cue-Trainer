@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function SelectionsContainer(props : Props) {
-    const cueHTMLList = <div className="Selections-Content">
+    const stimulusHTMLList = <div className="Selections-Content">
                             {
                                 [ ...props.userSelectionsMap.keys() ].map( (key, id) =>
                                     <ul key={ id } className="Parent-List">
@@ -39,7 +39,7 @@ export default function SelectionsContainer(props : Props) {
                 <ListIcon height={ 28 } width={ 28 } fill="none" stroke="var(--primary)"/>
                 <span>Selections</span>
             </div>
-            { isMapNotEmpty && cueHTMLList }
+            { isMapNotEmpty && stimulusHTMLList }
             { isMapInvalid && headsUpText }
         </div>
     )
