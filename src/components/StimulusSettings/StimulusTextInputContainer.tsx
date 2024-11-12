@@ -1,7 +1,8 @@
-import { ChangeEvent, useContext, useState } from 'react'
+import { ChangeEvent, useContext, useState, useEffect } from 'react'
 import { UserSelectionsContext } from '../../App';
 import './Settings.css'
 import './StimulusTextInputContainer.css'
+import { formatInputValue, containsOnlyAlphanumericAndComma } from '../HelperFunctions';
 
 interface Props {
 	prompt : string;
@@ -14,21 +15,26 @@ export default function StimulusTextInputContainer(props : Props) {
 	const userSelectionsProvider = useContext(UserSelectionsContext);
 
 	const [ inputValue, setInputValue ] = useState(userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey) ? userSelectionsProvider?.userSelectionsMap.get(props.userSelectionsMapKey)?.join(", ") : "");
+    const [ isAttemptedInputValid, setIsAttemptedInputValid ] = useState(true);
 	
-	const updateInputValue = (event : ChangeEvent<HTMLInputElement>) => {
+	const updateValue = (event : ChangeEvent<HTMLInputElement>) => {
 		const currentTargetValue = (event.target as HTMLInputElement).value;
 
-		setInputValue(currentTargetValue);
+        setIsAttemptedInputValid(containsOnlyAlphanumericAndComma(currentTargetValue));
+
+        if (isAttemptedInputValid) {
+            setInputValue(currentTargetValue);
+        }
 	}
 
-	const updateUserSelectionsMap = () => {
-		if (inputValue == undefined) {
-			throw new Error("Input value is undefined!");
-		}
+    useEffect(() => {
+        if (inputValue === undefined) {
+            throw new Error("Input value was undefined!");
+        }
 
-		let formattedInputValue = inputValue.replace(/\s/g, "");
-		
-		if (formattedInputValue == "") {
+        const formattedInputValue = formatInputValue(inputValue);
+
+        if (formattedInputValue === "") {
 			const updatedUserSelectionsMap = new Map<string, string[]>(userSelectionsProvider?.userSelectionsMap);
 
 			updatedUserSelectionsMap.delete(props.userSelectionsMapKey);
@@ -37,8 +43,8 @@ export default function StimulusTextInputContainer(props : Props) {
 		}
 		else {
 			userSelectionsProvider?.setUserSelectionsMap(new Map<string, string[]>(userSelectionsProvider.userSelectionsMap).set(props.userSelectionsMapKey, formattedInputValue.split(",")));
-		}
-	}
+        }
+    }, [inputValue]);
 
 	return (
 		<div className="Text-Input-Container">
@@ -51,9 +57,12 @@ export default function StimulusTextInputContainer(props : Props) {
 				id={ props.identifier }
 				name={ props.identifier }
 				placeholder={ props.placeholderText }
-				onChange={ (e) => updateInputValue(e) }
-				onBlur={ updateUserSelectionsMap }
+				onChange={ (e) => updateValue(e) }
 				value={ inputValue }/>
+            {
+                !isAttemptedInputValid && <p className="Heads-Up-Text">Only alphanumeric and comma characters are allowed!</p>
+            }
+            
 		</div>
     )
 }

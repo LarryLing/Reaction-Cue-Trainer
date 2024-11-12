@@ -52,9 +52,8 @@ The stimulus that changes is determined randomly by the app itself.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Future Developments
-- Implement Audio stimulus
-- Implement text input validation
+## Future Improvements
+- Prevent long text inputs from expanding "Selections" container.
 
 Click [here][Issues-url] to see the list of Issues!
 

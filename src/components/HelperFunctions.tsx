@@ -47,6 +47,40 @@ export function toHHMMSS(secs : number | undefined) {
 }
 
 //
+// Returns true if an input string only contains alphanumeric numbers or commas.
+//
+export function containsOnlyAlphanumericAndComma(textInput : string) {
+    const inputLen = textInput.length;
+
+    const isNumeric = (code : number) => (code <= 57) && (code >= 48);
+    const isUpperAlpha = (code : number) => (code <= 90) && (code >= 65);
+    const isLowerAlpha = (code : number) => (code <= 122) && (code >= 97);
+    const isComma = (code : number) => code === 44;
+    const isSpace = (code : number) => code === 32;
+
+    for (let i = 0; i < inputLen; i++) {
+        const code = textInput.charCodeAt(i);
+
+        if (!isNumeric(code) && !isUpperAlpha(code) && !isLowerAlpha(code) && !isComma(code) && !isSpace(code)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//
+// Removes all whitespace and excess leading and ending commas from the input string
+//
+export function formatInputValue(inputValue : string | undefined) {
+    if (inputValue === undefined) {
+        throw new Error("Tried to format in undefined input value!");
+    }
+
+    return inputValue.replace(/\s/g, "").replace(/^\,+|\,+$/gm,'').trim();
+}
+
+//
 // Determine if we have a valid userSelectionsMap before starting training mode. A userSelectionsMap is valid if a stimulus category has at least two stimuli selected under it.
 //
 export function getUserSelectionValidity(userSelectionsMap : Map<string, string[]>) {
@@ -80,6 +114,9 @@ export function createClonedSVG(svgToClone : ReactElement | undefined, newWidth 
     return clonedElement;
 }
 
+//
+// Checks if the userSelectionsMap has a given key
+//
 export function userSelectionsMapHasKey(userSelectionsMap : Map<string, string[]>, mapKey : string) {
     const mapKeys = [...userSelectionsMap.keys()];
 
